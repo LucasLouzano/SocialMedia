@@ -23,11 +23,14 @@ public class UsuarioController {
         List<Usuario> listUsuarios = usuarioService.findAll();
         return ResponseEntity.ok().body(listUsuarios);
     }
-    
+
     @PostMapping()
-    public ResponseEntity<Usuario> create (@RequestBody Usuario ndentificacao) {
-        Usuario newIndentificacao = usuarioService.create(ndentificacao);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newIndentificacao.getId()).toUri();
+    public ResponseEntity<Usuario> create(@RequestBody Usuario indentificacao) {
+        Usuario newIndentificacao = usuarioService.create(indentificacao);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newIndentificacao.getId())
+                .toUri();
         return ResponseEntity.created(uri).build();
     }
 }

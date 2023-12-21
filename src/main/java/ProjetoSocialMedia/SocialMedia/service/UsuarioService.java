@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -20,8 +19,13 @@ public class UsuarioService {
     }
 
     public Usuario create(Usuario indentificacao) {
-        indentificacao.setId(null);
-        return usuarioRepository.save(indentificacao);
+        if (indentificacao != null) {
+          this.usuarioRepository.save(indentificacao);
+        }
+        return indentificacao;
     }
-
 }
+
+
+
+
