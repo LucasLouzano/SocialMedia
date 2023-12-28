@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -22,6 +23,15 @@ public class UsuarioController {
     public ResponseEntity<List<Usuario>> findAll() {
         List<Usuario> listUsuarios = usuarioService.findAll();
         return ResponseEntity.ok().body(listUsuarios);
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> find(@PathVariable Long id) {
+        Optional<Usuario> usuario = usuarioService.findById(id);
+        return usuario
+            .map(use -> ResponseEntity.ok().body(use)) // Retorna o usuário se presente
+            .orElseGet(() -> ResponseEntity.notFound().build()); // Retorna 404 se ausente
+        
     }
 
     @PostMapping()
