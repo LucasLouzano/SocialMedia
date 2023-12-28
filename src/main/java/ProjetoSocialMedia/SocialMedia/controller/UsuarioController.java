@@ -1,7 +1,7 @@
 package ProjetoSocialMedia.SocialMedia.controller;
-
 import ProjetoSocialMedia.SocialMedia.model.Usuario;
 import ProjetoSocialMedia.SocialMedia.service.UsuarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,6 @@ import java.util.List;
 public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
-
 
     @GetMapping()
     public ResponseEntity<List<Usuario>> findAll() {

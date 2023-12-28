@@ -13,7 +13,7 @@ public class Usuario {
     private Long id;
     private String nome;
     private String login;
-    private String senha;
+    private String password;
 
     public Long getId() {
         return id;
@@ -39,11 +39,11 @@ public class Usuario {
         this.login = login;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

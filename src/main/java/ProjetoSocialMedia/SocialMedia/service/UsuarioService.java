@@ -1,5 +1,4 @@
 package ProjetoSocialMedia.SocialMedia.service;
-
 import ProjetoSocialMedia.SocialMedia.model.Usuario;
 import ProjetoSocialMedia.SocialMedia.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
