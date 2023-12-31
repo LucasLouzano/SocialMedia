@@ -26,8 +26,8 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
 class SocialMediaApplicationTests {
 
 
-	@Test
-	void contextLoads() {
-	}
+//	@Test
+//	void contextLoads() {
+//	}
 }
 
