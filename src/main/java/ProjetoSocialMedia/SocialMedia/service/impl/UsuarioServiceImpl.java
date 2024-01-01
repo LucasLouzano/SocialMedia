@@ -12,12 +12,14 @@ import java.util.Optional;
 public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
+
     @Override
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
+
     @Override
-    public Optional<Usuario> findById(Long id) {
+    public Optional<Usuario> getBuscaUsuarioPorId(Long id) {
         return usuarioRepository.findById(id);
     }
 
@@ -31,11 +33,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario update(Long id, Usuario indentificacao) {
+        Optional<Usuario> usuarios = usuarioRepository.findById(id);
+        if(usuarios.isPresent()) {
+            usuarios.get().setNome(indentificacao.getNome());
+            usuarios.get().setLogin(indentificacao.getLogin());
+            usuarios.get().setPassword(indentificacao.getPassword());
+            return usuarios.get();
+        }
         return null;
     }
 
     @Override
-    public int deleteByid(Long id) {
-        return 0;
+    public void deleteByid(Long id) {
+        usuarioRepository.deleteById(id);
     }
 }

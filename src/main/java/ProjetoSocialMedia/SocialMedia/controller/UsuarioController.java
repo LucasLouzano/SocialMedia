@@ -26,7 +26,7 @@ public class UsuarioController {
     
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> find(@PathVariable Long id) {
-        Optional<Usuario> usuario = usuarioService.findById(id);
+        Optional<Usuario> usuario = usuarioService.getBuscaUsuarioPorId(id);
         return usuario
             .map(use -> ResponseEntity.ok().body(use)) // Retorna o usuário se presente
             .orElseGet(() -> ResponseEntity.notFound().build()); // Retorna 404 se ausente
@@ -41,5 +41,16 @@ public class UsuarioController {
                 .buildAndExpand(newIndentificacao.getId())
                 .toUri();
         return ResponseEntity.created(uri).build();
+    }
+    @PutMapping()
+    public ResponseEntity <Usuario> update(Long id, @RequestBody Usuario Indentificacao){
+        Usuario usuario = usuarioService.create(Indentificacao);
+        return ResponseEntity.ok().body(usuario);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void deleteByid(@PathVariable("id") Long id) {
+        usuarioService.deleteByid(id);
     }
 }
