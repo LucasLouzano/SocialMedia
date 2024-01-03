@@ -12,7 +12,7 @@ public class UsuarioTemplate implements TemplateLoader {
         Fixture.of(Usuario.class).addTemplate("valid", new Rule() {
             {
                 add("id", 1L);
-                add("nome", "lucas");
+                add("login", "lucaslouzano");
             }
         });
 

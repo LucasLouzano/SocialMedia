@@ -1,21 +1,36 @@
 package ProjetoSocialMedia.SocialMedia.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Builder;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 
 @Entity
 @Builder
-public class Usuario {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
     private String login;
     private String password;
+    private UsuarioRole role;
+
+    public Usuario(String login, String password, UsuarioRole role) {
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Usuario(Usuario usuario) {
+
+    }
 
     public Long getId() {
         return id;
@@ -23,14 +38,6 @@ public class Usuario {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getLogin() {
@@ -41,11 +48,44 @@ public class Usuario {
         this.login = login;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (this.role == UsuarioRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE ADMIN"), new SimpleGrantedAuthority("ROLE USUARIO"));
+        else return List.of(new SimpleGrantedAuthority("ROLE USUARIO"));
+    }
+
+    @Override
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

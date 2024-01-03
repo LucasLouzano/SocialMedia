@@ -34,16 +34,16 @@ public class UsuarioServiceImplTest {
 
 
     @Test
-    public void deveBuscarPorId() {
-        Usuario usuario =Fixture.from(Usuario.class).gimme("valid");
+    public void deveBuscarPorLogin() {
+        Usuario usuario = Fixture.from(Usuario.class).gimme("valid");
 
         Mockito.when(usuarioRepository.findById(ArgumentMatchers.anyLong()))
                 .thenReturn(Optional.of(usuario));
-        Optional<Usuario> usuarioOptional = usuarioService.getBuscaUsuarioPorId(1L);
+        Optional<Usuario> usuarioOptional = usuarioService.getBuscaUsuarioPorId(1l);
         Assert.assertTrue(usuarioOptional.isPresent());
     }
     @Test
-    public void deveSalvarIndentificacao(){
+    public void deveSalvarUsuario(){
         Usuario usuarios = Fixture.from(Usuario.class).gimme("valid");
 
         Mockito.when(usuarioRepository.findAll())
