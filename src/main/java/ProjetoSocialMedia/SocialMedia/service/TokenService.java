@@ -1,4 +1,4 @@
-package ProjetoSocialMedia.SocialMedia.infra.security;
+package ProjetoSocialMedia.SocialMedia.service;
 
 import ProjetoSocialMedia.SocialMedia.model.Usuario;
 import com.auth0.jwt.JWT;

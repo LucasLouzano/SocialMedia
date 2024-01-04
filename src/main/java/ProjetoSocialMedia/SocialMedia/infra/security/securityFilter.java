@@ -1,6 +1,7 @@
 package ProjetoSocialMedia.SocialMedia.infra.security;
 
 import ProjetoSocialMedia.SocialMedia.repository.UsuarioRepository;
+import ProjetoSocialMedia.SocialMedia.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -37,7 +38,8 @@ public class securityFilter extends OncePerRequestFilter {
 
     private String recoverToken(HttpServletRequest request) {
         var authHeader = request.getHeader("Authorization");
-        if (authHeader == null) return null;
+        if (authHeader == null)
+            return null;
         return authHeader.replace("Bearer ", "");
     }
 

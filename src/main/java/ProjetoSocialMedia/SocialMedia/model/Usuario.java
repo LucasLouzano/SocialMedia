@@ -10,13 +10,13 @@ import java.util.Collection;
 import java.util.List;
 
 
-@Entity
-@Builder
+@Table(name = "users")
+@Entity(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private Long id;
     private String login;
     private String password;
