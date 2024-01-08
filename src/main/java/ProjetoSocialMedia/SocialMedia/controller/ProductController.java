@@ -1,10 +1,8 @@
 package ProjetoSocialMedia.SocialMedia.controller;
-import br.com.spring.security.security.entity.Product;
-import br.com.spring.security.security.repository.ProductRepository;
+import ProjetoSocialMedia.SocialMedia.model.Product;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController

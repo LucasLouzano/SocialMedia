@@ -1,4 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.controller;
+import ProjetoSocialMedia.SocialMedia.dto.Login;
+import ProjetoSocialMedia.SocialMedia.model.Usuario;
 import br.com.spring.security.security.dto.Login;
 import br.com.spring.security.security.entity.Usuario;
 import br.com.spring.security.security.service.TokenService;
