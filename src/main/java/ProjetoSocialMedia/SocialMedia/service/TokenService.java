@@ -1,9 +1,7 @@
 package ProjetoSocialMedia.SocialMedia.service;
-import ProjetoSocialMedia.SocialMedia.controller.AuthController;
 import ProjetoSocialMedia.SocialMedia.model.Usuario;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,8 +9,7 @@ import java.time.ZoneOffset;
 
 @Service
 public class TokenService {
-    @Autowired
-    private AuthController authController;
+
     public String gerarToken(Usuario usuario) {
         return JWT.create()
                 .withIssuer("Produtos")
