@@ -1,5 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 import ProjetoSocialMedia.SocialMedia.model.Product;
+import ProjetoSocialMedia.SocialMedia.repository.ProductRepository;
 import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
