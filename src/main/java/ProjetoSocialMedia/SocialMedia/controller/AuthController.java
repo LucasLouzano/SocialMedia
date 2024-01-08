@@ -1,6 +1,7 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 import ProjetoSocialMedia.SocialMedia.dto.Login;
 import ProjetoSocialMedia.SocialMedia.model.Usuario;
+import ProjetoSocialMedia.SocialMedia.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,5 +1,6 @@
-package ProjetoSocialMedia.SocialMedia.service;
+package ProjetoSocialMedia.SocialMedia.configuration;
 
+import ProjetoSocialMedia.SocialMedia.configuration.FilterToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

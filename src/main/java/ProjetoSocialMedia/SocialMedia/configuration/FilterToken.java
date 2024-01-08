@@ -1,7 +1,7 @@
-package ProjetoSocialMedia.SocialMedia.service;
+package ProjetoSocialMedia.SocialMedia.configuration;
 
-import ProjetoSocialMedia.SocialMedia.controller.TokenService;
 import ProjetoSocialMedia.SocialMedia.repository.UsuarioRepository;
+import ProjetoSocialMedia.SocialMedia.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
