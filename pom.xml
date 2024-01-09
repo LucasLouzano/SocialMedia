@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot Social Media</description>
 	<properties>
 		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-		<java.version>19</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
             <dependency>

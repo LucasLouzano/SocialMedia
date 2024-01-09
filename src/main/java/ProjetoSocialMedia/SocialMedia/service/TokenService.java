@@ -2,6 +2,7 @@ package ProjetoSocialMedia.SocialMedia.service;
 import ProjetoSocialMedia.SocialMedia.model.Usuario;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,10 +24,13 @@ public class TokenService {
 
 
     public String getSubject(String token) {
-        return JWT.require(Algorithm.HMAC256("secreta"))
-                .withIssuer("Produtos")
-                .build().verify(token).getSubject();
+        try {
+            return JWT.require(Algorithm.HMAC256("secreta"))
+                    .withIssuer("Produtos")
+                    .build().verify(token).getSubject();
 
+        } catch (JWTDecodeException e) {
+            return null;
+        }
     }
 }
-

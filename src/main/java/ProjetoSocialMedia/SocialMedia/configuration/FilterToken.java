@@ -31,18 +31,19 @@ public class FilterToken extends OncePerRequestFilter {
 
         var authorizationHeader = request.getHeader("Authorization");
 
-        if(authorizationHeader != null) {
+        if (authorizationHeader != null) {
             token = authorizationHeader.replace("Bearer ", "");
             var subject = this.tokenService.getSubject(token);
 
-            var usuario = this.usuarioRepository.findByLogin(subject);
+            if (subject != null) {
+                var usuario = this.usuarioRepository.findByLogin(subject);
 
-            var authentication = new UsernamePasswordAuthenticationToken(usuario,
-                    null, usuario.getAuthorities());
+                var authentication = new UsernamePasswordAuthenticationToken(usuario,
+                        null, usuario.getAuthorities());
 
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
-
         filterChain.doFilter(request, response);
 
     }

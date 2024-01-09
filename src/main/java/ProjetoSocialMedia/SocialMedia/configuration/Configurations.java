@@ -1,6 +1,8 @@
 package ProjetoSocialMedia.SocialMedia.configuration;
 
-import ProjetoSocialMedia.SocialMedia.configuration.FilterToken;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,19 +52,4 @@ public class Configurations {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
-
-//    @Bean
-//    public SecurityFilterChain(HttpSecurity http) throws Exception {
-//        return http.csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and().authorizeHttpRequests()
-//                .antMatchers(HttpMethod.POST, "/login")
-//                .permitAll()
-//                .antMatchers(HttpMethod.GET, "/home")
-//                .permitAll()
-//                .anyRequest().authenticated()
-//                .and().addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-//    }
