@@ -1,5 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.model;
 
+import ProjetoSocialMedia.SocialMedia.role.UserRole;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,9 +19,24 @@ public class Usuario implements UserDetails {
     private String login;
 
     private String password;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
-    private String role;
+    public Usuario(Long id, String login, String password, UserRole role) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
 
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -38,26 +54,14 @@ public class Usuario implements UserDetails {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public Usuario() {}
-
-
     public Long getId() {
         return id;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role));
+        return List.of(new SimpleGrantedAuthority("ROLE" + role));
     }
-
     @Override
     public String getPassword() {
         return password;
