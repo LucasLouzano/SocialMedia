@@ -32,7 +32,6 @@ public class Configurations {
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/product").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/home").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(tokenfilter, UsernamePasswordAuthenticationFilter.class)

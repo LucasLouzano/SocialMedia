@@ -23,6 +23,7 @@ public class AuthController {
 
     @Autowired
     private TokenService tokenService;
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     @PostMapping("/login")
