@@ -1,32 +1,25 @@
 package ProjetoSocialMedia.SocialMedia.model;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 @Entity
-public class Product {
-
+public class UserSocial {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
     private String name;
+    private int seguidores;
+    private int seguindo;
 
-    private Double price;
-
-    private String description;
-
-    public Product(){}
-
-    public Product(Long id, String name, Double price, String description) {
-        this.id = id;
+    public UserSocial(String name, int seguidores, int seguindo) {
         this.name = name;
-        this.price = price;
-        this.description = description;
+        this.seguidores = seguidores;
+        this.seguindo = seguindo;
     }
-    public Product(Product product){
 
+    public UserSocial(UserSocial users) {
     }
 
     public Long getId() {
@@ -45,19 +38,19 @@ public class Product {
         this.name = name;
     }
 
-    public Double getPrice() {
-        return price;
+    public int getSeguidores() {
+        return seguidores;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setSeguidores(int seguidores) {
+        this.seguidores = seguidores;
     }
 
-    public String getDescription() {
-        return description;
+    public int getSeguindo() {
+        return seguindo;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSeguindo(int seguindo) {
+        this.seguindo = seguindo;
     }
 }
