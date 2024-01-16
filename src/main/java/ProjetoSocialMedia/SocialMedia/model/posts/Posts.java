@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class Post {
+public class Posts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,15 +17,12 @@ public class Post {
     @OneToMany
     private List <Comment> comment;
 
-    public Post(Long id, String texto, String author, LocalDate createDateTime, List<Comment> comment) {
-        this.id = id;
-        this.texto = texto;
-        this.author = author;
-        this.createDateTime = createDateTime;
-        this.comment = comment;
-    }
-
-    public Post(Post post) {
+    public Posts(Posts posts) {
+        this.id = posts.getId();
+        this.texto = posts.getTexto();
+        this.author = posts.getAuthor();
+        this.createDateTime = posts.getCreateDateTime();
+        this.comment = posts.getComment();
     }
 
     public Long getId() {

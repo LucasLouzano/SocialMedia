@@ -1,10 +1,9 @@
 package ProjetoSocialMedia.SocialMedia.model.comment;
 
-import ProjetoSocialMedia.SocialMedia.model.posts.Post;
+import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 public class Comment {
@@ -15,17 +14,16 @@ public class Comment {
     private String author;
     private LocalDate createDateTime;
     @ManyToOne
-    private Post post;
+    @JoinColumn(name = "post_id")
+    private Posts posts;
 
-    public Comment(Long id, String message, String author, LocalDate createDateTime, Post post) {
-        this.id = id;
-        this.message = message;
-        this.author = author;
-        this.createDateTime = createDateTime;
-        this.post = post;
+    public Comment(Comment comment) {
+        this.id = comment.getId();
+        this.message = comment.message;
+        this.author = comment.author;
+        this.createDateTime = comment.getCreateDateTime();
+        this.posts = comment.getPosts();
     }
-
-    public Comment() {}
 
     public Long getId() {
         return id;
@@ -59,11 +57,11 @@ public class Comment {
         this.createDateTime = createDateTime;
     }
 
-    public Post getPost() {
-        return post;
+    public Posts getPosts() {
+        return posts;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setPosts(Posts posts) {
+        this.posts = posts;
     }
 }
