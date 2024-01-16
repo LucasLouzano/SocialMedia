@@ -1,5 +1,5 @@
-package ProjetoSocialMedia.SocialMedia.service;
-import ProjetoSocialMedia.SocialMedia.model.Usuario;
+package ProjetoSocialMedia.SocialMedia.configuration;
+import ProjetoSocialMedia.SocialMedia.model.users.Usuario;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;

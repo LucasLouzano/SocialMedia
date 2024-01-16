@@ -2,9 +2,9 @@ package ProjetoSocialMedia.SocialMedia.controller;
 
 import ProjetoSocialMedia.SocialMedia.dto.Login;
 import ProjetoSocialMedia.SocialMedia.dto.RegisterDTO;
-import ProjetoSocialMedia.SocialMedia.model.Usuario;
+import ProjetoSocialMedia.SocialMedia.model.users.Usuario;
 import ProjetoSocialMedia.SocialMedia.repository.UsuarioRepository;
-import ProjetoSocialMedia.SocialMedia.service.TokenService;
+import ProjetoSocialMedia.SocialMedia.configuration.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

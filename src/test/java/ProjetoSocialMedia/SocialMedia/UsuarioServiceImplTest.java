@@ -1,6 +1,6 @@
 //package ProjetoSocialMedia.SocialMedia;
 //
-//import ProjetoSocialMedia.SocialMedia.model.Usuario;
+//import ProjetoSocialMedia.SocialMedia.model.users.Usuario;
 //import ProjetoSocialMedia.SocialMedia.model.product.Product;
 //import ProjetoSocialMedia.SocialMedia.repository.UsuarioRepository;
 //import ProjetoSocialMedia.SocialMedia.service.impl.ProductServiceImpl;

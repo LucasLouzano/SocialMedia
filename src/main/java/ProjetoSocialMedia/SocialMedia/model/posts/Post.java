@@ -1,11 +1,10 @@
-package ProjetoSocialMedia.SocialMedia.model;
+package ProjetoSocialMedia.SocialMedia.model.posts;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import ProjetoSocialMedia.SocialMedia.model.comment.Comment;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -15,6 +14,19 @@ public class Post {
     private String texto;
     private String author;
     private LocalDate createDateTime;
+    @OneToMany
+    private List <Comment> comment;
+
+    public Post(Long id, String texto, String author, LocalDate createDateTime, List<Comment> comment) {
+        this.id = id;
+        this.texto = texto;
+        this.author = author;
+        this.createDateTime = createDateTime;
+        this.comment = comment;
+    }
+
+    public Post(Post post) {
+    }
 
     public Long getId() {
         return id;
@@ -46,5 +58,13 @@ public class Post {
 
     public void setCreateDateTime(LocalDate createDateTime) {
         this.createDateTime = createDateTime;
+    }
+
+    public List<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<Comment> comment) {
+        this.comment = comment;
     }
 }

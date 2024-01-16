@@ -1,31 +1,31 @@
 package ProjetoSocialMedia.SocialMedia.service.impl;
 
-import ProjetoSocialMedia.SocialMedia.model.Post;
+import ProjetoSocialMedia.SocialMedia.model.posts.Post;
 import ProjetoSocialMedia.SocialMedia.repository.PostRepository;
-import ProjetoSocialMedia.SocialMedia.service.UserSocialService;
+import ProjetoSocialMedia.SocialMedia.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserSocialServiceImpl implements UserSocialService {
+public class PostServiceImpl implements PostService {
     @Autowired
-    private PostRepository userSocialRepository;
+    private PostRepository postRepository;
 
     @Override
     public void save(Post userSocial) {
         if (userSocial != null) {
-            userSocialRepository.save(userSocial);
+            postRepository.save(userSocial);
         }
     }
     @Override
     public List<Post> findAll() {
-        return userSocialRepository.findAll();
+        return postRepository.findAll();
     }
 
     @Override
     public void deleteById(Long id) {
-        userSocialRepository.deleteById(id);
+        postRepository.deleteById(id);
     }
 }
