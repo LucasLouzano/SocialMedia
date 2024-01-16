@@ -1,7 +1,7 @@
 package ProjetoSocialMedia.SocialMedia.service.impl;
 
 import ProjetoSocialMedia.SocialMedia.model.Post;
-import ProjetoSocialMedia.SocialMedia.repository.UserSocialRepository;
+import ProjetoSocialMedia.SocialMedia.repository.PostRepository;
 import ProjetoSocialMedia.SocialMedia.service.UserSocialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class UserSocialServiceImpl implements UserSocialService {
     @Autowired
-    private UserSocialRepository userSocialRepository;
+    private PostRepository userSocialRepository;
 
     @Override
     public void save(Post userSocial) {
