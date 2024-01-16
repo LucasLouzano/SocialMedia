@@ -1,7 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
-import ProjetoSocialMedia.SocialMedia.model.UserSocial;
-import ProjetoSocialMedia.SocialMedia.repository.UserSocialRepository;
+import ProjetoSocialMedia.SocialMedia.model.Post;
 import ProjetoSocialMedia.SocialMedia.service.UserSocialService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,27 +11,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("product")
+@RequestMapping("users")
 public class UserSocialController {
 
     @Autowired
     private UserSocialService userSocialService;
+    @GetMapping
+    public ResponseEntity getUsers() {
+        List<Post> UsersList = this.userSocialService.findAll()
+                .stream().map(Post::new).toList();
+
+        return ResponseEntity.ok(UsersList);
+    }
 
     @PostMapping
-    public ResponseEntity<String> saveUsers(@RequestBody @Valid UserSocial users) {
-        UserSocial userSocial = new UserSocial(users);
+    public ResponseEntity<String> saveUsers(@RequestBody @Valid Post users)  {
+        Post userSocial = new Post(users);
 
         this.userSocialService.save(userSocial);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
-    public ResponseEntity getUsers() {
-        List<UserSocial> UsersList = this.userSocialService.findAll()
-                .stream().map(UserSocial::new).toList();
-
-        return ResponseEntity.ok(UsersList);
-    }
 
     @DeleteMapping("/product/{id}")
     public void delete(@PathVariable Long id) {

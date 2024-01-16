@@ -1,13 +1,13 @@
 package ProjetoSocialMedia.SocialMedia.service;
 
-import ProjetoSocialMedia.SocialMedia.model.UserSocial;
+import ProjetoSocialMedia.SocialMedia.model.Post;
 
 import java.util.List;
 
 public interface UserSocialService {
-    void save(UserSocial userSocial);
+    void save(Post userSocial) ;
 
-    List<UserSocial> findAll();
+    List<Post> findAll();
 
     void deleteById(Long id);
 }
