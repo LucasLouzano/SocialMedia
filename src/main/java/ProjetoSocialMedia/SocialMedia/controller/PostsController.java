@@ -17,7 +17,7 @@ public class PostsController {
     @Autowired
     private PostsService postService;
 
-    @GetMapping("/posts")
+    @GetMapping()
     public ResponseEntity<List<Posts>> getAllPosts() {
         List<Posts> PostsList = postService.findAllByOrderByCreateDateTimeDesc();
         return ResponseEntity.ok(PostsList);
@@ -39,8 +39,8 @@ public class PostsController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Posts> atualizar(@PathVariable Long Id, @RequestBody @Valid Posts PostId) {
-        Posts existingPost = postService.update(Id, PostId);
-        return ResponseEntity.ok().body(existingPost);
+        Posts postagens = postService.update(Id, PostId);
+        return ResponseEntity.ok().body(postagens);
     }
 
 

@@ -1,12 +1,14 @@
 package ProjetoSocialMedia.SocialMedia.model.comment;
 
+
 import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+
 @Entity
-public class Comment {
+public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,15 +16,18 @@ public class Comment {
     private String author;
     private LocalDate createDateTime;
     @ManyToOne
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "post_id") // juntar coluna join column
     private Posts posts;
 
-    public Comment(Comment comment) {
-        this.id = comment.getId();
-        this.message = comment.message;
-        this.author = comment.author;
-        this.createDateTime = comment.getCreateDateTime();
-        this.posts = comment.getPosts();
+    public Comments(Long id, String message, String author, LocalDate createDateTime, Posts posts) {
+        this.id = id;
+        this.message = message;
+        this.author = author;
+        this.createDateTime = createDateTime;
+        this.posts = posts;
+    }
+
+    public Comments() {
     }
 
     public Long getId() {

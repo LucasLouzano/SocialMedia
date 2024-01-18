@@ -31,7 +31,9 @@ public class Configurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/product").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/posts").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/posts").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(tokenfilter, UsernamePasswordAuthenticationFilter.class)
@@ -51,3 +53,7 @@ public class Configurations {
     }
 }
 
+//  .requestMatchers(HttpMethod.POST, "/posts").authenticated()
+
+
+//  .requestMatchers(HttpMethod.POST, "/posts").hasRole("ADMIN")

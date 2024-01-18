@@ -38,7 +38,7 @@ public class PostsServiceImpl implements PostsService {
             existingPost.setTexto(PostId.getTexto());
             existingPost.setAuthor(PostId.getAuthor());
             existingPost.setCreateDateTime(PostId.getCreateDateTime());
-            existingPost.setComment(PostId.getComment());
+            existingPost.setComments(PostId.getComments());
             postRepository.save(existingPost);
         }
         return existingPost;

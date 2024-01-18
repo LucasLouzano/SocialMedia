@@ -1,7 +1,8 @@
 package ProjetoSocialMedia.SocialMedia.model.posts;
 
-import ProjetoSocialMedia.SocialMedia.model.comment.Comment;
+import ProjetoSocialMedia.SocialMedia.model.comment.Comments;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,15 +16,19 @@ public class Posts {
     private String author;
     private LocalDate createDateTime;
     @OneToMany
-    private List <Comment> comment;
+    private List <Comments> comments;
+
+    public Posts() {
+    }
 
     public Posts(Posts posts) {
-        this.id = posts.getId();
-        this.texto = posts.getTexto();
-        this.author = posts.getAuthor();
-        this.createDateTime = posts.getCreateDateTime();
-        this.comment = posts.getComment();
+        this.id = getId();
+        this.texto = getTexto();
+        this.author = getAuthor();
+        this.createDateTime = getCreateDateTime();
+        this.comments = getComments();
     }
+
 
     public Long getId() {
         return id;
@@ -57,11 +62,11 @@ public class Posts {
         this.createDateTime = createDateTime;
     }
 
-    public List<Comment> getComment() {
-        return comment;
+    public List<Comments> getComments() {
+        return comments;
     }
 
-    public void setComment(List<Comment> comment) {
-        this.comment = comment;
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
     }
 }
