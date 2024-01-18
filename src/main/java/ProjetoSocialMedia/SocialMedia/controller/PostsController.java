@@ -19,14 +19,20 @@ public class PostsController {
 
     @GetMapping()
     public ResponseEntity<List<Posts>> getAllPosts() {
-        List<Posts> PostsList = postService.findAllByOrderByCreateDateTimeDesc();
-        return ResponseEntity.ok(PostsList);
+        List<Posts> postsList = postService.findAllByOrderByCreateDateTimeDesc();
+        if(postsList.isEmpty()) {
+        	return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(postsList);
     }
 
     @GetMapping("/{postId}")
     public ResponseEntity<Posts> getPostById(@PathVariable Long postId) {
-        Posts posts = postService.findById(postId);
-        return ResponseEntity.ok(posts);
+        Posts post = postService.findById(postId);
+        if(post == null) {
+        	return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(post);
     }
 
     @PostMapping
