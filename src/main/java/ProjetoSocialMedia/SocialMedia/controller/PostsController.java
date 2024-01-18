@@ -23,9 +23,9 @@ public class PostsController {
         return ResponseEntity.ok(PostsList);
     }
 
-    @GetMapping("/{postsId}")
+    @GetMapping("/{postId}")
     public ResponseEntity<Posts> getPostById(@PathVariable Long postId) {
-        Posts posts = postService.findById(postId);
+        Posts posts = postService.findById(postsId);
         return ResponseEntity.ok(posts);
     }
 
@@ -38,13 +38,13 @@ public class PostsController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Posts> atualizar(@PathVariable Long Id, @RequestBody @Valid Posts PostId) {
-        Posts postagens = postService.update(Id, PostId);
+    public ResponseEntity<Posts> atualizar(@PathVariable Long id, @RequestBody @Valid Posts PostId) {
+        Posts postagens = postService.update(id, PostId);
         return ResponseEntity.ok().body(postagens);
     }
 
 
-    @DeleteMapping("/{postsId}")
+    @DeleteMapping("/{postId}")
     public ResponseEntity<String> deletePost(@PathVariable Long postId) {
         this.postService.deleteById(postId);
         return ResponseEntity.ok("Posts deleted successwfully");

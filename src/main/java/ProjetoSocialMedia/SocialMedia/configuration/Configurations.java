@@ -33,7 +33,6 @@ public class Configurations {
                         .requestMatchers(HttpMethod.POST, "/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/posts").permitAll()
                         .requestMatchers(HttpMethod.GET, "/posts").permitAll()
-
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(tokenfilter, UsernamePasswordAuthenticationFilter.class)
