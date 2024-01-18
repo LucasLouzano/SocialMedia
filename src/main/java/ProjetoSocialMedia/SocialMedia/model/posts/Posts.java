@@ -22,11 +22,11 @@ public class Posts {
     }
 
     public Posts(Posts posts) {
-        this.id = getId();
-        this.texto = getTexto();
-        this.author = getAuthor();
-        this.createDateTime = getCreateDateTime();
-        this.comments = getComments();
+        this.id = posts.getId();
+        this.texto = posts.getTexto();
+        this.author = posts.getAuthor();
+        this.createDateTime = posts.getCreateDateTime();
+        this.comments = posts.getComments();
     }
 
 
