@@ -25,7 +25,7 @@ public class PostsController {
 
     @GetMapping("/{postId}")
     public ResponseEntity<Posts> getPostById(@PathVariable Long postId) {
-        Posts posts = postService.findById(postsId);
+        Posts posts = postService.findById(postId);
         return ResponseEntity.ok(posts);
     }
 
