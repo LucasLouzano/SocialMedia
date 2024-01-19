@@ -21,7 +21,6 @@ public class Comments {
 
 
     public Comments() {
-        this.createDateTime = LocalDateTime.now();
     }
 
     public Comments(Long id, String message, String author, LocalDateTime createDateTime, Posts posts) {
