@@ -15,10 +15,9 @@ public class PostsServiceImpl implements PostsService {
 
     @Override
     public void save(Posts post) {
-        if (post != null) {
-            postRepository.save(post);
-        }
+        postRepository.save(post);
     }
+
 
     @Override
     public List<Posts> findAllByOrderByCreateDateTimeDesc() {
@@ -32,15 +31,13 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public Posts update(Long id, Posts PostId) {
+    public Posts update(Long id, Posts updatePost) {
         Posts existingPost = findById(id);
-        if (existingPost != null) {
-            existingPost.setTexto(PostId.getTexto());
-            existingPost.setAuthor(PostId.getAuthor());
-            existingPost.setCreateDateTime(PostId.getCreateDateTime());
-            existingPost.setComments(PostId.getComments());
-            postRepository.save(existingPost);
-        }
+        existingPost.setTexto(updatePost.getTexto());
+        existingPost.setAuthor(updatePost.getAuthor());
+        existingPost.setCreateDateTime(updatePost.getCreateDateTime());
+        existingPost.setComments(updatePost.getComments());
+        postRepository.save(existingPost);
         return existingPost;
     }
 

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,9 +16,9 @@ public class Posts {
     private String texto;
     private String author;
     private LocalDate createDateTime;
-    @OneToMany
-    private List <Comments> comments;
 
+   @OneToMany//(mappedBy = "posts", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comments> comments;
     public Posts() {
     }
 
@@ -29,6 +30,13 @@ public class Posts {
         this.comments = posts.getComments();
     }
 
+    public void addComment(Comments comment) {
+        comment.setPosts(this);
+        if (comments.isEmpty()){
+
+        }
+        this.comments.add(comment);
+    }
 
     public Long getId() {
         return id;

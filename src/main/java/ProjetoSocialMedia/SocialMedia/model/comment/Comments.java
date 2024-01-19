@@ -4,7 +4,7 @@ package ProjetoSocialMedia.SocialMedia.model.comment;
 import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -14,20 +14,22 @@ public class Comments {
     private Long id;
     private String message;
     private String author;
-    private LocalDate createDateTime;
+    private LocalDateTime createDateTime;
     @ManyToOne
     @JoinColumn(name = "post_id") // juntar coluna join column
     private Posts posts;
 
-    public Comments(Long id, String message, String author, LocalDate createDateTime, Posts posts) {
+
+    public Comments() {
+        this.createDateTime = LocalDateTime.now();
+    }
+
+    public Comments(Long id, String message, String author, LocalDateTime createDateTime, Posts posts) {
         this.id = id;
         this.message = message;
         this.author = author;
         this.createDateTime = createDateTime;
         this.posts = posts;
-    }
-
-    public Comments() {
     }
 
     public Long getId() {
@@ -54,11 +56,11 @@ public class Comments {
         this.author = author;
     }
 
-    public LocalDate getCreateDateTime() {
+    public LocalDateTime getCreateDateTime() {
         return createDateTime;
     }
 
-    public void setCreateDateTime(LocalDate createDateTime) {
+    public void setCreateDateTime(LocalDateTime createDateTime) {
         this.createDateTime = createDateTime;
     }
 
@@ -68,5 +70,16 @@ public class Comments {
 
     public void setPosts(Posts posts) {
         this.posts = posts;
+    }
+
+    @Override
+    public String toString() {
+        return "Comments{" +
+                "id=" + id +
+                ", message='" + message + '\'' +
+                ", author='" + author + '\'' +
+                ", createDateTime=" + createDateTime +
+                ", posts=" + posts +
+                '}';
     }
 }
