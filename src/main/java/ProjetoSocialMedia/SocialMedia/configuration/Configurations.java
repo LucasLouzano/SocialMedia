@@ -35,7 +35,6 @@ public class Configurations {
                         .requestMatchers(HttpMethod.GET, "/posts").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/posts").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/posts").permitAll()
-                        .requestMatchers(HttpMethod.POST,  "/posts/*/comments").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(tokenfilter, UsernamePasswordAuthenticationFilter.class)

@@ -1,11 +1,8 @@
 package ProjetoSocialMedia.SocialMedia.model.posts;
-
 import ProjetoSocialMedia.SocialMedia.model.comment.Comments;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -17,11 +14,11 @@ public class Posts {
     private String author;
     private LocalDate createDateTime;
 
-   @OneToMany//(mappedBy = "posts", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comments> comments;
+    @OneToMany
+    private List<Comments> comments ;
+
     public Posts() {
     }
-
     public Posts(Posts posts) {
         this.id = posts.getId();
         this.texto = posts.getTexto();
@@ -30,13 +27,6 @@ public class Posts {
         this.comments = posts.getComments();
     }
 
-    public void addComment(Comments comment) {
-        comment.setPosts(this);
-        if (comments.isEmpty()){
-
-        }
-        this.comments.add(comment);
-    }
 
     public Long getId() {
         return id;
@@ -77,4 +67,5 @@ public class Posts {
     public void setComments(List<Comments> comments) {
         this.comments = comments;
     }
+
 }

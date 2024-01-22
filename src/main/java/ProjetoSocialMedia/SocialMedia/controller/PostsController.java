@@ -1,16 +1,13 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
-import ProjetoSocialMedia.SocialMedia.model.comment.Comments;
 import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import ProjetoSocialMedia.SocialMedia.service.PostsService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/posts")
@@ -36,7 +33,17 @@ public class PostsController {
         }
         return ResponseEntity.ok(post);
     }
-
+//
+//    @GetMapping("/{postId}")
+//    public ResponseEntity<Posts> getPostById(@PathVariable Long postId){
+//        Optional<Posts> optionalPosts = postService.findById(postId);
+//        if (optionalPosts.isPresent()){
+//            Posts posts = optionalPosts.get();
+//            return ResponseEntity.ok(posts);
+//        }else{
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
     @PostMapping
     public ResponseEntity<String> savePosts(@RequestBody @Valid Posts posts) {
@@ -46,21 +53,6 @@ public class PostsController {
         }
         this.postService.save(postagem);
         return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/{postId}/comments")
-    public ResponseEntity<String> adicionarCommet(@PathVariable Long postId, @RequestBody @Valid Comments comments) {
-            Posts post = postService.findById(postId);
-            if (post == null) {
-                return ResponseEntity.notFound().build();
-            }
-            comments.setPosts(post);
-            post.addComment(comments);
-            postService.save(post);
-
-            return ResponseEntity.ok("Comentário adicionado com sucesso");
-
-
     }
 
     @PutMapping(value = "/{id}")

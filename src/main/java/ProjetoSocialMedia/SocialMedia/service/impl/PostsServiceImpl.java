@@ -14,8 +14,9 @@ public class PostsServiceImpl implements PostsService {
     private PostsRepository postRepository;
 
     @Override
-    public void save(Posts post) {
+    public Posts save(Posts post) {
         postRepository.save(post);
+        return post;
     }
 
 
@@ -24,6 +25,11 @@ public class PostsServiceImpl implements PostsService {
         return postRepository.findAllByOrderByCreateDateTimeDesc();
     }
 
+//    @Override
+//    public Optional findById(Long postId) {
+//        return postRepository.findById(postId);
+//    }
+//
 
     @Override
     public Posts findById(Long postId) {

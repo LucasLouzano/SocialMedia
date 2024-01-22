@@ -19,7 +19,6 @@ public class Comments {
     @JoinColumn(name = "post_id") // juntar coluna join column
     private Posts posts;
 
-
     public Comments() {
     }
 
@@ -69,16 +68,5 @@ public class Comments {
 
     public void setPosts(Posts posts) {
         this.posts = posts;
-    }
-
-    @Override
-    public String toString() {
-        return "Comments{" +
-                "id=" + id +
-                ", message='" + message + '\'' +
-                ", author='" + author + '\'' +
-                ", createDateTime=" + createDateTime +
-                ", posts=" + posts +
-                '}';
     }
 }
