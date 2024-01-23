@@ -33,7 +33,7 @@ public class PostsController {
         }
         return ResponseEntity.ok(post);
     }
-//
+
 //    @GetMapping("/{postId}")
 //    public ResponseEntity<Posts> getPostById(@PathVariable Long postId){
 //        Optional<Posts> optionalPosts = postService.findById(postId);

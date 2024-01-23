@@ -12,7 +12,7 @@ public class Posts {
     private Long id;
     private String texto;
     private String author;
-    private LocalDate createDateTime;
+    private LocalDateTime createDateTime;
 
     @OneToMany
     private List<Comments> comments ;
@@ -52,11 +52,11 @@ public class Posts {
         this.author = author;
     }
 
-    public LocalDate getCreateDateTime() {
+    public LocalDateTime getCreateDateTime() {
         return createDateTime;
     }
 
-    public void setCreateDateTime(LocalDate createDateTime) {
+    public void setCreateDateTime(LocalDateTime createDateTime) {
         this.createDateTime = createDateTime;
     }
 

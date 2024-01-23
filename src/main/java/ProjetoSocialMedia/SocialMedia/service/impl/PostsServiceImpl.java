@@ -13,38 +13,35 @@ public class PostsServiceImpl implements PostsService {
     @Autowired
     private PostsRepository postRepository;
 
-    @Override
-    public Posts save(Posts post) {
-        postRepository.save(post);
-        return post;
-    }
-
 
     @Override
     public List<Posts> findAllByOrderByCreateDateTimeDesc() {
         return postRepository.findAllByOrderByCreateDateTimeDesc();
     }
-
 //    @Override
-//    public Optional findById(Long postId) {
+//    public Posts findById(Long postId) {
 //        return postRepository.findById(postId);
 //    }
-//
-
     @Override
     public Posts findById(Long postId) {
         return postRepository.findById(postId).orElse(null);
     }
 
     @Override
-    public Posts update(Long id, Posts updatePost) {
-        Posts existingPost = findById(id);
-        existingPost.setTexto(updatePost.getTexto());
-        existingPost.setAuthor(updatePost.getAuthor());
-        existingPost.setCreateDateTime(updatePost.getCreateDateTime());
-        existingPost.setComments(updatePost.getComments());
-        postRepository.save(existingPost);
-        return existingPost;
+    public Posts save(Posts post) {
+        postRepository.save(post);
+        return post;
+    }
+
+    @Override
+    public Posts update(Long id, Posts posts) {
+        Posts postage = findById(id);
+        postage.setTexto(posts.getTexto());
+        postage.setAuthor(posts.getAuthor());
+        postage.setCreateDateTime(posts.getCreateDateTime());
+        postage.setComments(posts.getComments());
+        postRepository.save(postage);
+        return postage;
     }
 
     @Override
