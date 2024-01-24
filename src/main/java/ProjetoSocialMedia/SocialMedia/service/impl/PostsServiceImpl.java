@@ -7,24 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostsServiceImpl implements PostsService {
     @Autowired
     private PostsRepository postRepository;
-
-
     @Override
-    public List<Posts> findAllByOrderByCreateDateTimeDesc() {
-        return postRepository.findAllByOrderByCreateDateTimeDesc();
+    public List<Posts> findALL() {
+        return postRepository.findAll();
     }
-//    @Override
-//    public Posts findById(Long postId) {
-//        return postRepository.findById(postId);
-//    }
     @Override
     public Posts findById(Long postId) {
-        return postRepository.findById(postId).orElse(null);
+        Optional<Posts> posts = postRepository.findById(postId);
+        return posts.orElse(null);
     }
 
     @Override
@@ -48,6 +44,7 @@ public class PostsServiceImpl implements PostsService {
     public void deleteById(Long postId) {
         postRepository.deleteById(postId);
     }
+
 }
 
 

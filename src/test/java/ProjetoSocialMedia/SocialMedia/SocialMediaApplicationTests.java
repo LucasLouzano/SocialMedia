@@ -1,16 +1,17 @@
 package ProjetoSocialMedia.SocialMedia;
 
+import org.junit.Test;
+
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 
 @SpringBootTest
-class SocialMediaApplicationTests {
+public class SocialMediaApplicationTests {
 
 
-//	@Test
-//	void contextLoads() {
-//	}
+	@Test
+	public void main() {
+        SocialMediaApplication.main(new String[] {});
+	}
 }
 

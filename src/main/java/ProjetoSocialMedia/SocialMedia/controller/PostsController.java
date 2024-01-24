@@ -6,8 +6,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/posts")
@@ -16,9 +16,9 @@ public class PostsController {
     @Autowired
     private PostsService postService;
 
-    @GetMapping()
-    public ResponseEntity<List<Posts>> getAllPosts() {
-        List<Posts> postsList = postService.findAllByOrderByCreateDateTimeDesc();
+    @GetMapping
+    public ResponseEntity<List<Posts>> GetPosts() {
+        List<Posts> postsList = postService.findALL();
         if (postsList.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -33,17 +33,6 @@ public class PostsController {
         }
         return ResponseEntity.ok(post);
     }
-
-//    @GetMapping("/{postId}")
-//    public ResponseEntity<Posts> getPostById(@PathVariable Long postId){
-//        Optional<Posts> optionalPosts = postService.findById(postId);
-//        if (optionalPosts.isPresent()){
-//            Posts posts = optionalPosts.get();
-//            return ResponseEntity.ok(posts);
-//        }else{
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
 
     @PostMapping
     public ResponseEntity<String> savePosts(@RequestBody @Valid Posts posts) {
