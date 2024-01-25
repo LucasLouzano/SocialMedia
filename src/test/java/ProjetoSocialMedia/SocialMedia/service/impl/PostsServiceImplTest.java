@@ -16,7 +16,8 @@ import java.util.Optional;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PostsServiceImplTest {
@@ -108,6 +109,11 @@ class PostsServiceImplTest {
     }
 
     @Test
-    void deleteById() {
+    void deletarComSucesso() {
+        when(repository.findById(anyLong())).thenReturn(Optional.of(new Posts()));
+        doNothing().when(repository).deleteById(anyLong());
+        service.delete(1L);
+        verify(repository, times(1)).deleteById(anyLong());
+
     }
 }

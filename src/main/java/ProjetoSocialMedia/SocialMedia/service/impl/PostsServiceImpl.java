@@ -13,21 +13,26 @@ import java.util.Optional;
 public class PostsServiceImpl implements PostsService {
     @Autowired
     private PostsRepository postRepository;
+
     @Override
     public List<Posts> findALL() {
         return postRepository.findAll();
     }
+
     @Override
-    public Posts findById(Long postId) {
-        Optional<Posts> posts = postRepository.findById(postId);
+    public Posts findById(Long id) {
+        Optional<Posts> posts = postRepository.findById(id);
         return posts.orElse(null);
     }
 
     @Override
     public Posts save(Posts post) {
-        postRepository.save(post);
+        if (post != null) {
+            postRepository.save(post);
+        }
         return post;
     }
+
 
     @Override
     public Posts update(Posts updatePost) {
@@ -40,8 +45,9 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public void deleteById(Long postId) {
-        postRepository.deleteById(postId);
+    public void delete(Long id) {
+        findById(id);
+        postRepository.deleteById(id);
     }
 
 }

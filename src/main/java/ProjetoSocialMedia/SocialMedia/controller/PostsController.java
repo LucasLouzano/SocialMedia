@@ -26,8 +26,8 @@ public class PostsController {
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<Posts> getPostById(@PathVariable Long postId) {
-        Posts post = postService.findById(postId);
+    public ResponseEntity<Posts> getPostById(@PathVariable Long id) {
+        Posts post = postService.findById(id);
         if (post == null) {
             return ResponseEntity.notFound().build();
         }
@@ -37,9 +37,6 @@ public class PostsController {
     @PostMapping
     public ResponseEntity<String> savePosts(@RequestBody @Valid Posts posts) {
         Posts postagem = new Posts(posts);
-        if (postagem == null) {
-            return ResponseEntity.notFound().build();
-        }
         this.postService.save(postagem);
         return ResponseEntity.ok().build();
     }
@@ -56,10 +53,10 @@ public class PostsController {
 
 
     @DeleteMapping("/{postId}")
-    public ResponseEntity<String> deletePost(@PathVariable Long postId) {
-        this.postService.deleteById(postId);
-        if (postId != null) {
-            return ResponseEntity.ok("Posts deleted successwfully");
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        this.postService.delete(id);
+        if (id != null) {
+            return ResponseEntity.ok("Post deletado com sucesso");
         } else {
             return ResponseEntity.notFound().build();
         }
