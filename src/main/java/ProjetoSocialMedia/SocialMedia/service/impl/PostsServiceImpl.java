@@ -30,14 +30,13 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public Posts update(Long id, Posts posts) {
-        Posts postage = findById(id);
-        postage.setTexto(posts.getTexto());
-        postage.setAuthor(posts.getAuthor());
-        postage.setCreateDateTime(posts.getCreateDateTime());
-        postage.setComments(posts.getComments());
-        postRepository.save(postage);
-        return postage;
+    public Posts update(Posts updatePost) {
+        updatePost.setTexto(updatePost.getTexto());
+        updatePost.setAuthor(updatePost.getAuthor());
+        updatePost.setCreateDateTime(updatePost.getCreateDateTime());
+        updatePost.setComments(updatePost.getComments());
+        postRepository.save(updatePost);
+        return updatePost;
     }
 
     @Override

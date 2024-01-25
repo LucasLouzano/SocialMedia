@@ -46,7 +46,8 @@ public class PostsController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Posts> atualizar(@PathVariable Long id, @RequestBody @Valid Posts updatePost) {
-        Posts postagens = postService.update(id, updatePost);
+        updatePost.setId(id);
+        Posts postagens = postService.update(updatePost);
         if (postagens == null) {
             return ResponseEntity.notFound().build();
         }

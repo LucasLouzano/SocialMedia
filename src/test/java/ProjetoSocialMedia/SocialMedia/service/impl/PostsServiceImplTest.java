@@ -16,7 +16,6 @@ import java.util.Optional;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -77,10 +76,9 @@ class PostsServiceImplTest {
         posts.setCreateDateTime(LocalDateTime.now());
 
         when(repository.save(any())).thenReturn(posts);
-        // Action (ação)
+
         Posts post = service.save(posts);
 
-        // Assert (verificação)
         assertNotNull(post);
         assertEquals(Posts.class, post.getClass());
         assertEquals(1L, post.getId());
@@ -88,25 +86,25 @@ class PostsServiceImplTest {
         assertEquals("Texto", post.getTexto());
         assertNotNull(post.getCreateDateTime());
     }
-//    @Test
-//    void quandoCriarRetornaUmException() {
-//        var posts = new Posts();
-//        posts.setId(1L);
-//        posts.setAuthor("Lucas");
-//        posts.setTexto("Texto");
-//        posts.setCreateDateTime(LocalDateTime.now());
-//
-//        when(repository.findById(anyLong())).thenReturn(Optional.of(posts));
-//
-//        try{
-//            service.save(posts);
-//        } catch(Exception e){
-//            assertEquals(quandoCriarRetornaUmException(),e.getClass();
-//        }
-//    }
 
     @Test
-    void update() {
+    void quandoAtualizarRetornaSucesso() {
+        var posts = new Posts();
+        posts.setId(1L);
+        posts.setAuthor("Lucas");
+        posts.setTexto("Texto");
+        posts.setCreateDateTime(LocalDateTime.now());
+
+        when(repository.save(any())).thenReturn(posts);
+
+        Posts post = service.update(posts);
+
+        assertNotNull(post);
+        assertEquals(Posts.class, post.getClass());
+        assertEquals(1L, post.getId());
+        assertEquals("Lucas", post.getAuthor());
+        assertEquals("Texto", post.getTexto());
+        assertNotNull(post.getCreateDateTime());
     }
 
     @Test
