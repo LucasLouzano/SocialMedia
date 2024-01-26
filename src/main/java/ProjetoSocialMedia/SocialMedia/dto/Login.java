@@ -1,4 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.dto;
 
-public record Login(String login,String password) {
+import ProjetoSocialMedia.SocialMedia.role.UserRole;
+
+public record Login(String login, String password, UserRole admin) {
 }
