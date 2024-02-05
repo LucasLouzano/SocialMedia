@@ -34,7 +34,7 @@ class PostsControllerTest {
         post.setTexto("Texto");
         post.setCreateDateTime(LocalDateTime.now());
 
-        when(service.findALL()).thenReturn(List.of(post));
+        when(service.findAll()).thenReturn(List.of(post));
         ResponseEntity <List<Posts>> resposta = controller.GetPosts();
         assertNotNull(resposta);
         assertNotNull(resposta.getBody());

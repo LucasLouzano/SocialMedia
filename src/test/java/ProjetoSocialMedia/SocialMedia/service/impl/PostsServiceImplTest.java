@@ -38,7 +38,7 @@ class PostsServiceImplTest {
         posts.setCreateDateTime(LocalDateTime.now());
 
         when(repository.findAll()).thenReturn(List.of(posts));
-        List<Posts> posts1 = service.findALL();
+        List<Posts> posts1 = service.findAll();
         assertNotNull(posts1);
         assertEquals(1,posts1.size());
 

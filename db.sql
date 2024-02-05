@@ -1,0 +1,22 @@
+--
+--CREATE SCHEMA IF NOT EXISTS `dart` DEFAULT CHARACTER SET utf8;
+--USE `dart`;
+--
+--CREATE TABLE users (
+--    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+--    login VARCHAR(255) NOT NULL,
+--    password VARCHAR(255) NOT NULL
+--);
+--
+--CREATE TABLE post (
+--    id BIGINT PRIMARY KEY,
+--    texto VARCHAR(255),
+--    author VARCHAR(255),
+--    createDateTime DATETIME
+--);
+--CREATE TABLE comments (
+--    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+--    message VARCHAR(1000),
+--    author VARCHAR(255),
+--    createDateTime DATETIME
+--);

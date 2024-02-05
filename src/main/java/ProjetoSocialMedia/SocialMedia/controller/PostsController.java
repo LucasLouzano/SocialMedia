@@ -1,5 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
+import ProjetoSocialMedia.SocialMedia.model.comment.Comments;
 import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import ProjetoSocialMedia.SocialMedia.service.PostsService;
 import jakarta.validation.Valid;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/posts")
@@ -18,7 +20,7 @@ public class PostsController {
 
     @GetMapping
     public ResponseEntity<List<Posts>> GetPosts() {
-        List<Posts> postsList = postService.findALL();
+        List<Posts> postsList = postService.findAll();
         if (postsList.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

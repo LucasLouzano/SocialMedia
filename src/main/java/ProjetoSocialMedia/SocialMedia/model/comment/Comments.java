@@ -22,12 +22,12 @@ public class Comments {
     public Comments() {
     }
 
-    public Comments(Long id, String message, String author, LocalDateTime createDateTime, Posts posts) {
-        this.id = id;
-        this.message = message;
-        this.author = author;
-        this.createDateTime = createDateTime;
-        this.posts = posts;
+    public Comments(Comments comments) {
+        this.id = comments.getId();
+        this.message = comments.getMessage();
+        this.author = comments.getAuthor();
+        this.createDateTime = comments.getCreateDateTime();
+        this.posts = comments.getPosts();
     }
 
     public Long getId() {
