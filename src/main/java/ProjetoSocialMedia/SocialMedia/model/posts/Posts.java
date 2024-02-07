@@ -1,7 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.model.posts;
 import ProjetoSocialMedia.SocialMedia.model.comment.Comments;
 import jakarta.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -63,7 +62,6 @@ public class Posts {
     public List<Comments> getComments() {
         return comments;
     }
-
     public void setComments(List<Comments> comments) {
         this.comments = comments;
     }

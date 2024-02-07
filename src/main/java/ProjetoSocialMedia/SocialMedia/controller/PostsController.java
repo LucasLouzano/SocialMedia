@@ -9,12 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/posts")
 public class PostsController {
-
     @Autowired
     private PostsService postService;
 
@@ -27,7 +25,7 @@ public class PostsController {
         return ResponseEntity.ok(postsList);
     }
 
-    @GetMapping("/{postId}")
+    @GetMapping("/{id}")
     public ResponseEntity<Posts> getPostById(@PathVariable Long id) {
         Posts post = postService.findById(id);
         if (post == null) {
@@ -54,13 +52,19 @@ public class PostsController {
     }
 
 
-    @DeleteMapping("/{postId}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
-        this.postService.delete(id);
-        if (id != null) {
-            return ResponseEntity.ok("Post deletado com sucesso");
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        boolean deleted = postService.delete(id);
+        if (deleted) {
+            return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/comments")
+    public ResponseEntity<List<Posts>> getAllPostsWithComments() {
+        List<Posts> postsComments = postService.findAllPostsWithComments(); // ENCONTRAR TODAS AS POSTAGENS COM COMENTÁRIO
+        return ResponseEntity.ok(postsComments);
     }
 }

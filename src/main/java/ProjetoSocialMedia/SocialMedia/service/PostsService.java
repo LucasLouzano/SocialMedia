@@ -12,8 +12,9 @@ public interface PostsService {
 
     Posts update(Posts updatePost);
 
-    void delete(Long id);
+    boolean delete(Long id);
 
     List<Posts> findAll();
 
+    List<Posts> findAllPostsWithComments();
 }

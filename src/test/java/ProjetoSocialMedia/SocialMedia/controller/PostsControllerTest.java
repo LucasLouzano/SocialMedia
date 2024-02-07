@@ -93,7 +93,7 @@ class PostsControllerTest {
         posts.setTexto("Texto");
         posts.setCreateDateTime(LocalDateTime.now());
         doNothing().when(service).delete(anyLong());
-        ResponseEntity<String> response = controller.delete(1L);
+        ResponseEntity<Void> response = controller.delete(1L);
         assertNotNull(response);
         assertEquals(ResponseEntity.class, response.getClass());
         verify(service, times(1)).delete(anyLong());

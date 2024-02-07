@@ -43,8 +43,8 @@ public class CommentsServiceImpl implements CommentsService {
     }
 
     @Override
-    public Comments deleteById(Long id) {
-        commentsRepository.deleteById(id);
-        return null;
+    public boolean deleteById(Long id) {
+      commentsRepository.deleteById(id);
+      return false;
     }
 }

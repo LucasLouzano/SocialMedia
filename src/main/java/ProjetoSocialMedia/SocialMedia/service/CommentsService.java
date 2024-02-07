@@ -14,5 +14,5 @@ public interface CommentsService {
 
     Comments update(Long id, Comments comments);
 
-    Comments deleteById(Long id);
+    boolean deleteById(Long id);
 }

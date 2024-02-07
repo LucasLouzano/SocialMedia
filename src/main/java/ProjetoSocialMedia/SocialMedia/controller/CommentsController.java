@@ -50,12 +50,12 @@ public class CommentsController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Comments> deleteComent(@PathVariable Long id) {
-        Comments comments = service.deleteById(id);
-        if (comments != null){
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Void> deleteComment(@PathVariable Long id) {
+        boolean comments = service.deleteById(id);
+        if (comments){
+            return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok().body(comments);
+        return ResponseEntity.notFound().build();
     }
 
 }

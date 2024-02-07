@@ -1,28 +1,29 @@
 package ProjetoSocialMedia.SocialMedia.service.impl;
 
-import ProjetoSocialMedia.SocialMedia.model.comment.Comments;
 import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
-import ProjetoSocialMedia.SocialMedia.repository.CommentsRepository;
 import ProjetoSocialMedia.SocialMedia.repository.PostsRepository;
 import ProjetoSocialMedia.SocialMedia.service.PostsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class PostsServiceImpl implements PostsService {
     @Autowired
     private PostsRepository postRepository;
-    @Autowired
-    private CommentsRepository commentsRepository;
 
     @Override
     public List<Posts> findAll() {
         return postRepository.findAll();
+    }
+
+    @Override
+    public List<Posts> findAllPostsWithComments() {
+        List<Posts> posts = postRepository.findAll();
+        posts.forEach(post -> post.setComments(post.getComments()));
+        return posts;
     }
 
     @Override
@@ -33,11 +34,12 @@ public class PostsServiceImpl implements PostsService {
 
     @Override
     public Posts save(Posts post) {
-        if (post != null) {
+//        if (post != null) {
             postRepository.save(post);
-        }
         return post;
-    }
+        }
+//        return post;
+//    }
 
     @Override
     public Posts update(Posts updatePost) {
@@ -50,9 +52,9 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public void delete(Long id) {
-        findById(id);
+    public boolean delete(Long id) {
         postRepository.deleteById(id);
+        return false;
     }
 
 }
