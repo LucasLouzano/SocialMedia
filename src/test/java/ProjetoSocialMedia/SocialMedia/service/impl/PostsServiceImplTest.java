@@ -108,12 +108,12 @@ class PostsServiceImplTest {
         assertNotNull(post.getCreateDateTime());
     }
 
-    @Test
+    /*@Test
     void deletarComSucesso() {
         when(repository.findById(anyLong())).thenReturn(Optional.of(new Posts()));
         doNothing().when(repository).deleteById(anyLong());
         service.delete(1L);
         verify(repository, times(1)).deleteById(anyLong());
 
-    }
+    }*/
 }

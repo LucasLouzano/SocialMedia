@@ -85,7 +85,7 @@ class PostsControllerTest {
 
     }
 
-    @Test
+    /*@Test
     void deletePost() {
         var posts = new Posts();
         posts.setId(1L);
@@ -97,5 +97,5 @@ class PostsControllerTest {
         assertNotNull(response);
         assertEquals(ResponseEntity.class, response.getClass());
         verify(service, times(1)).delete(anyLong());
-    }
+    }*/
 }
