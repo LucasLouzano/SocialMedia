@@ -1,6 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
-import ProjetoSocialMedia.SocialMedia.model.comment.Comments;
+import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
 import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import ProjetoSocialMedia.SocialMedia.service.PostsService;
 import jakarta.validation.Valid;
@@ -17,12 +17,12 @@ public class PostsController {
     private PostsService postService;
 
     @GetMapping
-    public ResponseEntity<List<Posts>> GetPosts() {
-        List<Posts> postsList = postService.findAll();
-        if (postsList.isEmpty()) {
+    public ResponseEntity<List<PostsDTO>> GetPosts() {
+        List<PostsDTO> postsListDTO = postService.findAll();
+        if (postsListDTO.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(postsList);
+        return ResponseEntity.ok(postsListDTO);
     }
 
     @GetMapping("/{id}")
@@ -35,10 +35,12 @@ public class PostsController {
     }
 
     @PostMapping
-    public ResponseEntity<String> savePosts(@RequestBody @Valid Posts posts) {
-        Posts postagem = new Posts(posts);
-        this.postService.save(postagem);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<PostsDTO> savePosts(@RequestBody Posts posts) {
+        if (posts.getTexto() == null || posts.getTexto().isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        PostsDTO postsDTO = postService.save(posts);
+        return ResponseEntity.ok(postsDTO);
     }
 
     @PutMapping(value = "/{id}")
@@ -52,13 +54,13 @@ public class PostsController {
     }
 
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         boolean deleted = postService.delete(id);
         if (deleted) {
             return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok().body(deleted);
         }
     }
 

@@ -53,8 +53,3 @@ public class Configurations {
         return new BCryptPasswordEncoder();
     }
 }
-
-//  .requestMatchers(HttpMethod.POST, "/posts").authenticated()
-
-
-//  .requestMatchers(HttpMethod.POST, "/posts").hasRole("ADMIN")
