@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: Projeto Social Media API
+  description: API para um projeto de mídia social.
+  version: 1.0.0
+servers:
+  - url: https://api.socialmedia.com/v1
+paths:
+  /users:
+    get:
+      summary: Lista de usuários
+      description: Retorna uma lista de todos os usuários cadastrados.
+      responses:
+        '200':
+          description: OK
+  /posts:
+    get:
+      summary: Lista de postagens
+      description: Retorna uma lista de todas as postagens.
+      responses:
+        '200':
+          description: OK
+  /comments:
+    get:
+      summary: Lista de comentários
+      description: Retorna uma lista de todos os comentários.
+      responses:
+        '200':
+          description: OK
+
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: integer
+        login:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+    Posts:
+      type: object
+      properties:
+        id:
+          type: integer
+        texto:
+          type: string
+        author:
+          type: string
+        createDateTime:
+          type: string
+          format: date-time
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comentarios'
+    Comentarios:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        author:
+          type: string
+        createDateTime:
+          type: string
+          format: date-time

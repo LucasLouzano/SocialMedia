@@ -3,6 +3,8 @@ package ProjetoSocialMedia.SocialMedia.controller;
 import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
 import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import ProjetoSocialMedia.SocialMedia.service.PostsService;
+import io.swagger.v3.oas.annotations.Operation;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ public class PostsController {
     @Autowired
     private PostsService postService;
 
+    @Operation(summary = "Listar", description = "Método que retorna todos os dados")
     @GetMapping
     public ResponseEntity<List<PostsDTO>> GetPosts() {
         List<PostsDTO> postsListDTO = postService.findAll();
@@ -36,9 +39,6 @@ public class PostsController {
 
     @PostMapping
     public ResponseEntity<PostsDTO> savePosts(@RequestBody Posts posts) {
-        if (posts.getTexto() == null || posts.getTexto().isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        }
         PostsDTO postsDTO = postService.save(posts);
         return ResponseEntity.ok(postsDTO);
     }
@@ -54,6 +54,7 @@ public class PostsController {
     }
 
 
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         boolean deleted = postService.delete(id);
@@ -63,7 +64,6 @@ public class PostsController {
             return ResponseEntity.ok().body(deleted);
         }
     }
-
     @GetMapping("/comments")
     public ResponseEntity<List<Posts>> getAllPostsWithComments() {
         List<Posts> postsComments = postService.findAllPostsWithComments(); // ENCONTRAR TODAS AS POSTAGENS COM COMENTÁRIO

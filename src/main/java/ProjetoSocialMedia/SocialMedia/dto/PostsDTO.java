@@ -1,29 +1,18 @@
 package ProjetoSocialMedia.SocialMedia.dto;
 
+import java.time.LocalDateTime;
+
 public class PostsDTO {
 
-    private Long id;
     private String texto;
+    private LocalDateTime createDateTime;
 
     public PostsDTO() {
     }
 
-    public PostsDTO(Long id, String texto) {
-        this.id = id;
+    public PostsDTO(String texto, LocalDateTime createDateTime) {
         this.texto = texto;
-    }
-
-//    public PostsDTO(PostsDTO postsDTO) {
-//        this.id = postsDTO.getId();
-//        this.texto = postsDTO.getTexto();
-//    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.createDateTime = createDateTime;
     }
 
     public String getTexto() {
@@ -32,5 +21,13 @@ public class PostsDTO {
 
     public void setTexto(String texto) {
         this.texto = texto;
+    }
+
+    public LocalDateTime getCreateDateTime() {
+        return createDateTime;
+    }
+
+    public void setCreateDateTime(LocalDateTime createDateTime) {
+        this.createDateTime = createDateTime;
     }
 }
