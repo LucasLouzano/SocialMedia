@@ -2,6 +2,8 @@ package ProjetoSocialMedia.SocialMedia.controller;
 
 import ProjetoSocialMedia.SocialMedia.model.comment.Comments;
 import ProjetoSocialMedia.SocialMedia.service.impl.CommentsServiceImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,6 @@ public class CommentsController {
 
     @Autowired
     private CommentsServiceImpl service;
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Comments> getCommentsById(@PathVariable Long id) {
