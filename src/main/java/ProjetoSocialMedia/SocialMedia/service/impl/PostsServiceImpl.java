@@ -59,9 +59,15 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public boolean delete(Long id) {
-        postRepository.deleteById(id);
-        return true;
+    public Posts delete(Long id) {
+        Optional<Posts> postsOptional = postRepository.findById(id);
+        if (postsOptional.isPresent()) {
+            Posts postsDelete = postsOptional.get();
+            postRepository.delete(postsDelete);
+            return postsDelete;
+        } else {
+            return null;
+        }
     }
 }
 

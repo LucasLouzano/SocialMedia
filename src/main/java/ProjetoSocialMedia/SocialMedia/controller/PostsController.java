@@ -57,16 +57,14 @@ public class PostsController {
         return ResponseEntity.ok().body(postagens);
     }
 
-
-
     @DeleteMapping(value = "/{id}")
     @ApiOperation(value = "Delata um posts")
-    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
-        boolean deleted = postService.delete(id);
-        if (deleted) {
-            return ResponseEntity.noContent().build();
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        Posts posts = postService.delete(id);
+        if (posts != null) {
+            return ResponseEntity.ok().body("Posts com ID " + id + " foi deletado com sucesso !");
         } else {
-            return ResponseEntity.ok().body(deleted);
+            return ResponseEntity.notFound().build();
         }
     }
     @GetMapping("/comments")

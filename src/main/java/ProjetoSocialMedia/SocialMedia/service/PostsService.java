@@ -6,6 +6,7 @@ import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import java.util.List;
 
 public interface PostsService {
+    List<PostsDTO> findAll();
 
     Posts findById(Long id);
 
@@ -13,9 +14,7 @@ public interface PostsService {
 
     Posts update(Posts updatePost);
 
-    boolean delete(Long id);
-
-    List<PostsDTO> findAll();
+    Posts delete(Long id);
 
     List<Posts> findAllPostsWithComments();
 }

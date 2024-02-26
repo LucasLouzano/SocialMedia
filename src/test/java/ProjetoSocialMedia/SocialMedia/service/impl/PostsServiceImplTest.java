@@ -53,25 +53,31 @@ class PostsServiceImplTest {
         assertEquals("author", response.getAuthor());
 
     }
+
     @Test
-    void findAll() {
+    void getTodosPostsDto() {
         var posts = new Posts();
         posts.setId(1L);
+        posts.setAuthor("lucas");
         posts.setTexto("Texto");
-        posts.setAuthor("Lucas");
         posts.setCreateDateTime(LocalDateTime.now());
-        // Configurando o mock do repository para retornar uma lista de Posts
-        when(repository.findAll()).thenReturn(List.of(posts));
+        List<Posts> posts1 = List.of(posts);
+        when(repository.findAll()).thenReturn(posts1);
+
+
+        PostsDTO postsDTO = new PostsDTO();
+        postsDTO.setTexto("Texto");
+        postsDTO.setCreateDateTime(LocalDateTime.now());
+        when(mapper.postsToPostsDTO(any())).thenReturn(postsDTO);
+
         // Chamando o método do serviço que queremos testar
         List<PostsDTO> postsDTOList = service.findAll();
         // Verificações
         assertNotNull(postsDTOList);
         assertEquals(1, postsDTOList.size());
-
-        PostsDTO postsDTO = postsDTOList.get(0);
-        assertEquals(PostsDTO.class, postsDTO.getClass());
-//        assertEquals(1L, postsDTO.getId());
-        assertEquals("Texto", postsDTO.getTexto());
+        assertEquals("Texto", postsDTOList.get(0).getTexto());
+        verify(repository, times(1)).findAll();
+        verify(mapper, times(1)).postsToPostsDTO(any());
     }
 
     @Test
@@ -96,12 +102,13 @@ class PostsServiceImplTest {
         // Verifica se a classe da resposta é PostsDTO
         assertEquals(PostsDTO.class, resposta.getClass());
 
-       // Verifica se os atributos da resposta são iguais aos atributos do objeto PostsDTO esperado
+        // Verifica se os atributos da resposta são iguais aos atributos do objeto PostsDTO esperado
         assertEquals(postsDTO.getTexto(), resposta.getTexto());
 
         // Verifica se o método save do repository foi chamado com o objeto Posts correto
         verify(repository).save(eq(posts));
     }
+
     @Test
     void quandoAtualizarRetornaSucesso() {
         var posts = new Posts();
@@ -125,10 +132,23 @@ class PostsServiceImplTest {
 
     @Test
     void deletarComSucesso() {
-        when(repository.findById(anyLong())).thenReturn(Optional.of(new Posts()));
-        doNothing().when(repository).deleteById(anyLong());
-        service.delete(1L);
-        verify(repository, times(1)).deleteById(anyLong());
+        var posts = new Posts();
+        posts.setId(1L);
+        posts.setAuthor("Lucas");
+        posts.setTexto("Texto");
+        posts.setCreateDateTime(LocalDateTime.now());
+        when(repository.findById(anyLong())).thenReturn(Optional.of(posts));
 
+
+        // Chamando o método delete no serviço
+        Posts deletedPost = service.delete(1L);
+
+        // Verificando se o método delete foi chamado uma vez com o objeto correto
+        verify(repository, times(1)).delete(posts);
+
+        // Verificando se o Posts retornado é o mesmo que foi excluído
+        assertEquals(posts, deletedPost);
     }
 }
+
+//        doNothing().when(repository).delete(posts);
