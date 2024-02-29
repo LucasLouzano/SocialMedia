@@ -23,7 +23,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PostsServiceImplTest {
-    private static final int INDICE = 0;
 
     @Mock
     private PostsRepository repository;
