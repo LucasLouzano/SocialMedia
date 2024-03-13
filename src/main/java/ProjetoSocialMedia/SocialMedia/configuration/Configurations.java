@@ -35,6 +35,7 @@ public class Configurations {
                         .requestMatchers(HttpMethod.GET, "/posts").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/posts").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/posts").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(tokenfilter, UsernamePasswordAuthenticationFilter.class)
@@ -52,5 +53,7 @@ public class Configurations {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    
+    
 
 }
