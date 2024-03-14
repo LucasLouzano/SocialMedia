@@ -10,7 +10,7 @@ public interface PostsService {
 
     Posts findById(Long id);
 
-    PostsDTO save(Posts posts);
+    Posts save(String text);
 
     Posts update(Posts updatePost);
 

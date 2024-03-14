@@ -2,10 +2,6 @@ package ProjetoSocialMedia.SocialMedia.controller;
 
 import java.util.List;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,9 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ProjetoSocialMedia.SocialMedia.dto.PostDTORequestSave;
 import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
 import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import ProjetoSocialMedia.SocialMedia.service.PostsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 
 @RestController
@@ -58,8 +59,9 @@ public class PostsController {
     //TODO não precisa de um DTO?
     @Operation(summary = "Salvar um novo post", description = "Salva um novo post.")
     @PostMapping
-    public ResponseEntity<PostsDTO> savePosts(@RequestBody Posts posts) {
-        PostsDTO postsDTO = postService.save(posts);
+    public ResponseEntity<Posts> savePosts(@RequestBody PostDTORequestSave post) {
+    	
+        Posts postsDTO = postService.save(post.text());
         return ResponseEntity.ok(postsDTO);
     }
     @Operation(summary = "Atualizar um post existente", description = "Atualiza um post existente com base no ID fornecido.")

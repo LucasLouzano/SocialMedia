@@ -42,10 +42,12 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public PostsDTO save(Posts posts) {
-        posts.setCreateDateTime(LocalDateTime.now());
-        Posts postagem = postRepository.save(posts);
-        return postsMapper.postsToPostsDTO(postagem);
+    public Posts save(String text) {
+    	Posts post = new Posts();
+    	post.setTexto(text);
+        post.setCreateDateTime(LocalDateTime.now());
+        //TODO set author
+        return postRepository.save(post);
     }
 
     @Override

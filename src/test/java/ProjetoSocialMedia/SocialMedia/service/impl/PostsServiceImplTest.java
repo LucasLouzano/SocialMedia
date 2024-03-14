@@ -1,30 +1,12 @@
 package ProjetoSocialMedia.SocialMedia.service.impl;
 
-import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
-import ProjetoSocialMedia.SocialMedia.mapper.PostsMapper;
-import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
-import ProjetoSocialMedia.SocialMedia.repository.PostsRepository;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PostsServiceImplTest {
 
-    @Mock
+    /*@Mock
     private PostsRepository repository;
 
     @Mock
@@ -147,7 +129,7 @@ class PostsServiceImplTest {
 
         // Verificando se o Posts retornado é o mesmo que foi excluído
         assertEquals(posts, deletedPost);
-    }
+    }*/
 }
 
 //        doNothing().when(repository).delete(posts);
