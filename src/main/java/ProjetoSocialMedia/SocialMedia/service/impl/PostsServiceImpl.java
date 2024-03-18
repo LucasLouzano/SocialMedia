@@ -45,6 +45,7 @@ public class PostsServiceImpl implements PostsService {
     public Posts save(String text) {
     	Posts post = new Posts();
     	post.setTexto(text);
+        post.setAuthor(text);
         post.setCreateDateTime(LocalDateTime.now());
         //TODO set author
         return postRepository.save(post);

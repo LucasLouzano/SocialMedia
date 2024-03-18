@@ -5,8 +5,10 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Date;
 
 @Service
 public class TokenService {
@@ -25,6 +27,16 @@ public class TokenService {
 
     public String getSubject(String token) {
         try {
+
+            // Verifica se o token não é nulo ou vazio
+            if (token == null || token.isEmpty()) {
+                return null;
+            }
+
+            // Verifica se o token não está expirado
+            if (isTokenExpired(token)) {
+                return null;
+            }
             return JWT.require(Algorithm.HMAC256("secreta"))
                     .withIssuer("Posts")
                     .build().verify(token).getSubject();
@@ -33,4 +45,17 @@ public class TokenService {
             return null;
         }
     }
+
+    private boolean isTokenExpired(String token) {
+        try {
+            // Obtém a data de expiração do token
+            Date expiration = JWT.decode(token).getExpiresAt();
+
+            // Verifica se a data de expiração é anterior à data atual
+            return expiration != null && expiration.before(Date.from(Instant.now()));
+        } catch (JWTDecodeException e) {
+            return true; // Se ocorrer um erro na decodificação do token, consideramos que está expirado
+        }
+    }
 }
+

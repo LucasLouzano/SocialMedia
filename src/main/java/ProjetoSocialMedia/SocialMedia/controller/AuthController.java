@@ -28,6 +28,7 @@ public class AuthController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Login login) throws AuthenticationException {
         var usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(login.login(), login.password());
@@ -51,8 +52,6 @@ public class AuthController {
 
         this.usuarioRepository.save(usuario);
 
-        String token = tokenService.gerarToken(usuario);
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok("Usuário registrado com sucesso!");
     }
-
 }
