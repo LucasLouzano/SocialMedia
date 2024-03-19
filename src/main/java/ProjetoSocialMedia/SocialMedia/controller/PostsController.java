@@ -1,6 +1,8 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,7 @@ import jakarta.validation.Valid;
 public class PostsController {
     @Autowired
     private PostsService postService;
+
     @Operation(summary = "Obter todos os posts", description = "Retorna uma lista de todos os posts.")
     @GetMapping
     public ResponseEntity<List<PostsDTO>> GetPosts() {
@@ -39,41 +42,39 @@ public class PostsController {
         }
         return ResponseEntity.ok(postsListDTO);
     }
-    // Endpoint para obter um post por ID
+
     @Operation(summary = "Obter um post por ID", description = "Retorna um post específico com base no ID fornecido.")
-    @ApiResponses(value = { // é usada para fornecer informações sobre as possíveis respostas que um endpoint pode retornar. Ela permite especificar uma lista de respostas HTTP
+    @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Post encontrado"),
-            @ApiResponse(responseCode = "404", description = "Post não encontrado")
-//          responseCode indica o status da resposta HTTP endpoint
-//          description Uma explicação detalhada da funcionalidade do endpoint.
-    })
+            @ApiResponse(responseCode = "404", description = "Post não encontrado")})
     @GetMapping("/{id}")
-    public ResponseEntity<Posts> getPostById(@Parameter(description = "ID do post a ser encontrado", example = "1") @PathVariable Long id) {
-        Posts post = postService.findById(id);
-        if (post == null) {
+    public ResponseEntity<PostsDTO> getPostById(@Parameter(description = "ID do post a ser encontrado", example = "1") @PathVariable Long id) {
+        PostsDTO postsDTO = postService.findById(id);
+        if (postsDTO == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(post);
+        return ResponseEntity.ok(postsDTO);
     }
 
     //TODO não precisa de um DTO?
     @Operation(summary = "Salvar um novo post", description = "Salva um novo post.")
     @PostMapping
     public ResponseEntity<Posts> savePosts(@RequestBody PostDTORequestSave post) {
-    	
         Posts postsDTO = postService.save(post.text());
         return ResponseEntity.ok(postsDTO);
     }
+
     @Operation(summary = "Atualizar um post existente", description = "Atualiza um post existente com base no ID fornecido.")
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Posts> atualizar(@PathVariable Long id, @RequestBody @Valid Posts updatePost) {
+    public ResponseEntity<PostsDTO> atualizar(@PathVariable Long id, @RequestBody @Valid Posts updatePost) {
         updatePost.setId(id);
-        Posts postagens = postService.update(updatePost);
-        if (postagens == null) {
+        PostsDTO existingPostDto = postService.update(updatePost);
+        if (existingPostDto == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok().body(postagens);
+        return ResponseEntity.ok().body(existingPostDto);
     }
+
     @Operation(summary = "Deletar um post", description = "Deleta um post com base no ID fornecido.")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
@@ -84,6 +85,7 @@ public class PostsController {
             return ResponseEntity.notFound().build();
         }
     }
+
     @Operation(summary = "Obter todos os posts com comentários", description = "Retorna uma lista de todos os posts que possuem comentários.")
     @GetMapping("/comments")
     public ResponseEntity<List<Posts>> getAllPostsWithComments() {

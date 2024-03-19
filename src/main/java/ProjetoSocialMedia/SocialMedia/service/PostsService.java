@@ -8,11 +8,11 @@ import java.util.List;
 public interface PostsService {
     List<PostsDTO> findAll();
 
-    Posts findById(Long id);
+    PostsDTO findById(Long id);
 
     Posts save(String text);
 
-    Posts update(Posts updatePost);
+    PostsDTO update(Posts updatePost);
 
     Posts delete(Long id);
 

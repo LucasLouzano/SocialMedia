@@ -36,9 +36,9 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public Posts findById(Long id) {
-        Optional<Posts> posts = postRepository.findById(id);
-        return posts.orElse(null);
+    public PostsDTO findById(Long id) {
+        Posts posts = postRepository.findById(id).get();
+        return postsMapper.postsToPostsDTO(posts);
     }
 
     @Override
@@ -50,15 +50,10 @@ public class PostsServiceImpl implements PostsService {
         //TODO set author
         return postRepository.save(post);
     }
-
     @Override
-    public Posts update(Posts updatePost) {
-        updatePost.setTexto(updatePost.getTexto());
-        updatePost.setAuthor(updatePost.getAuthor());
-        updatePost.setCreateDateTime(updatePost.getCreateDateTime());
-        updatePost.setComments(updatePost.getComments());
-        postRepository.save(updatePost);
-        return updatePost;
+    public PostsDTO update(Posts updatePost) {
+        Posts posts = postRepository.save(updatePost);
+        return postsMapper.postsToPostsDTO(posts);
     }
 
     @Override
