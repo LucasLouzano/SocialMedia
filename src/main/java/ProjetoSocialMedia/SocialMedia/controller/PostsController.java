@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import ProjetoSocialMedia.SocialMedia.api.PostApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,11 +33,13 @@ import jakarta.validation.Valid;
 public class PostsController {
     @Autowired
     private PostsService postService;
+    @Autowired
+    private PostApi postApi;
 
     @Operation(summary = "Obter todos os posts", description = "Retorna uma lista de todos os posts.")
     @GetMapping
-    public ResponseEntity<List<PostsDTO>> GetPosts() {
-        List<PostsDTO> postsListDTO = postService.findAll();
+    public ResponseEntity<List<PostsDTO>> getPosts() {
+        List<PostsDTO> postsListDTO = postApi.findAll();
         if (postsListDTO.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
