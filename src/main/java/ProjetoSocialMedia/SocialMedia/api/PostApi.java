@@ -32,7 +32,7 @@ public class PostApi {
             Gson gson = new Gson();
             List<PostsDTO> postsDTOList = gson.fromJson(jsonDeResposta, listaDePostsType);
 
-//            postsDTOList.forEach(post -> System.out.println(post.getTitle()));
+            postsDTOList.forEach(post -> System.out.println(post.getTexto()));
 
             return postsDTOList;
         } catch (IOException e) {
