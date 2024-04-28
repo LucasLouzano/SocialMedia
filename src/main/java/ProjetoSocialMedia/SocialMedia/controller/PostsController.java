@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import ProjetoSocialMedia.SocialMedia.api.PostApi;
+import ProjetoSocialMedia.SocialMedia.mapper.PostsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,6 +36,8 @@ public class PostsController {
     private PostsService postService;
     @Autowired
     private PostApi postApi;
+    @Autowired
+    private PostsMapper mapper;
 
     @Operation(summary = "Obter todos os posts", description = "Retorna uma lista de todos os posts.")
     @GetMapping
@@ -59,13 +62,16 @@ public class PostsController {
         return ResponseEntity.ok(postsDTO);
     }
 
-    //TODO não precisa de um DTO?
     @Operation(summary = "Salvar um novo post", description = "Salva um novo post.")
     @PostMapping
-    public ResponseEntity<Posts> savePosts(@RequestBody PostDTORequestSave post) {
-        Posts postsDTO = postService.save(post.text());
-        return ResponseEntity.ok(postsDTO);
+    public ResponseEntity<PostDTORequestSave> savePosts(@RequestBody @Valid PostsDTO postsDTO) {
+        PostDTORequestSave postDTORequestSave = postApi.save(postsDTO);
+        if (postDTORequestSave == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(postDTORequestSave);
     }
+
 
     @Operation(summary = "Atualizar um post existente", description = "Atualiza um post existente com base no ID fornecido.")
     @PutMapping(value = "/{id}")
@@ -80,13 +86,12 @@ public class PostsController {
 
     @Operation(summary = "Deletar um post", description = "Deleta um post com base no ID fornecido.")
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
-        Posts posts = postService.delete(id);
-        if (posts != null) {
-            return ResponseEntity.ok().body("Posts com ID " + id + " foi deletado com sucesso !");
-        } else {
+    public ResponseEntity<PostsDTO> deletePost(@PathVariable Long id) {
+        PostsDTO postagens = postService.delete(id);
+        if (postagens == null) {
             return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok(postagens);
     }
 
     @Operation(summary = "Obter todos os posts com comentários", description = "Retorna uma lista de todos os posts que possuem comentários.")

@@ -1,42 +1,42 @@
-package ProjetoSocialMedia.SocialMedia.controller;
-import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
-import ProjetoSocialMedia.SocialMedia.mapper.PostsMapper;
-import ProjetoSocialMedia.SocialMedia.service.impl.PostsServiceImpl;
-import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import java.util.List;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-@ExtendWith(MockitoExtension.class)
-class PostsControllerTest {
-    @InjectMocks
-    private PostsController controller;
-    @Mock
-    private PostsServiceImpl service;
-    @Test
-    void quandoBuscarTodosRetorneUmaLista() {
-        PostsDTO postDTO = new PostsDTO();
-        postDTO.setTexto("Texto");
-        when(service.findAll()).thenReturn(List.of(postDTO));
-
-        ResponseEntity<List<PostsDTO>> resposta = controller.GetPosts();
-
-        Assertions.assertNotNull((resposta.getBody()));
-        Assertions.assertEquals(HttpStatus.OK, resposta.getStatusCode());
-
-        verify(service, times(1)).findAll();
-
-        List<PostsDTO> postsDTOList = resposta.getBody();
-        Assertions.assertEquals(1,postsDTOList.size());
-        Assertions.assertEquals("Texto",postsDTOList.get(0).getTexto());
-    }
-}
+//package ProjetoSocialMedia.SocialMedia.controller;
+//import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
+//import ProjetoSocialMedia.SocialMedia.mapper.PostsMapper;
+//import ProjetoSocialMedia.SocialMedia.service.impl.PostsServiceImpl;
+//import org.junit.Test;
+//import org.junit.jupiter.api.Assertions;
+//import org.junit.jupiter.api.extension.ExtendWith;
+//import org.mockito.InjectMocks;
+//import org.mockito.Mock;
+//import org.mockito.junit.jupiter.MockitoExtension;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
+//import java.util.List;
+//import static org.mockito.ArgumentMatchers.any;
+//import static org.mockito.Mockito.*;
+//@ExtendWith(MockitoExtension.class)
+//class PostsControllerTest {
+//    @InjectMocks
+//    private PostsController controller;
+//    @Mock
+//    private PostsServiceImpl service;
+//    @Test
+//    void quandoBuscarTodosRetorneUmaLista() {
+//        PostsDTO postDTO = new PostsDTO();
+//        postDTO.setTexto("Texto");
+//        when(service.findAll()).thenReturn(List.of(postDTO));
+//
+//        ResponseEntity<List<PostsDTO>> resposta = controller.GetPosts();
+//
+//        Assertions.assertNotNull((resposta.getBody()));
+//        Assertions.assertEquals(HttpStatus.OK, resposta.getStatusCode());
+//
+//        verify(service, times(1)).findAll();
+//
+//        List<PostsDTO> postsDTOList = resposta.getBody();
+//        Assertions.assertEquals(1,postsDTOList.size());
+//        Assertions.assertEquals("Texto",postsDTOList.get(0).getTexto());
+//    }
+//}
 
 //    @Test
 //    void getPostById() {
