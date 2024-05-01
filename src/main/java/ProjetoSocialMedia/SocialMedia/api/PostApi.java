@@ -1,11 +1,10 @@
 package ProjetoSocialMedia.SocialMedia.api;
 
-import ProjetoSocialMedia.SocialMedia.dto.PostDTORequestSave;
 import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
+import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.*;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +17,8 @@ public class PostApi {
     @Autowired
     private OkHttpClient httpClient;
 
-    public PostDTORequestSave save(@Valid PostsDTO postsDTO) {
-        // Faz a chamada HTTP para salvar os posts
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(postsDTO));
+    public PostsDTO save(Posts posts) {
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(posts));
         Request request = new Request.Builder()
                 .url("http://localhost:8082/posts")
                 .addHeader("Accept", "application/json")
@@ -34,8 +32,7 @@ public class PostApi {
             }
 
             String jsonResponse = response.body().string();
-            // Aqui você precisa ajustar a conversão para o tipo correto, dependendo da estrutura do JSON retornado
-            return new Gson().fromJson(jsonResponse, PostDTORequestSave.class);
+            return new Gson().fromJson(jsonResponse, PostsDTO.class);
         } catch (IOException e) {
             throw new RuntimeException("Error during HTTP request", e);
         }
@@ -52,7 +49,7 @@ public class PostApi {
             Response response = httpClient.newCall(request).execute();
             if (!response.isSuccessful()) {
                 if (response.code() == 404) {
-                    return null; // Post não encontrado
+                    return null;
                 } else {
                     throw new IOException("Unexpected response code: " + response);
                 }
@@ -96,8 +93,9 @@ public class PostApi {
         }
     }
 
-    public PostsDTO update(PostsDTO post) {
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(post));
+
+    public PostsDTO update(Posts posts) {
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(posts));
         Request request = new Request.Builder()
                 .url("http://localhost:8082/posts")
                 .post(requestBody)
@@ -109,9 +107,9 @@ public class PostApi {
             }
 
             String jsonResponse = response.body().string();
-            PostsDTO savedPost = new Gson().fromJson(jsonResponse, PostsDTO.class);
+            PostsDTO postsDTO = new Gson().fromJson(jsonResponse, PostsDTO.class);
 
-            return savedPost;
+            return postsDTO;
         } catch (IOException e) {
             throw new RuntimeException("Error during HTTP request", e);
         }

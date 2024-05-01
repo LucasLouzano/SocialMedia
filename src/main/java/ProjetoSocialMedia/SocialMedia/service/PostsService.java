@@ -7,11 +7,9 @@ import java.util.List;
 
 public interface PostsService {
 
-    PostsDTO findById(Long id);
+//    PostsDTO findById(Long id);
 
-//    Posts save(String text);
-
-    PostsDTO update(Posts updatePost);
+//    PostsDTO update(Posts updatePost);
 
     PostsDTO delete(Long id);
 
