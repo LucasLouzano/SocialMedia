@@ -68,8 +68,9 @@ public class PostsController {
 
     @Operation(summary = "Atualizar um post existente", description = "Atualiza um post existente com base no ID fornecido.")
     @PutMapping(value = "/{id}")
-    public ResponseEntity<PostsDTO> atualizar(@PathVariable @RequestBody @Valid Posts Posts) {
-        PostsDTO postsDTO = postApi.update(Posts);
+    public ResponseEntity<PostsDTO> atualizar(@PathVariable Long id, @RequestBody @Valid Posts posts) {
+        posts.setId(id);
+        PostsDTO postsDTO = postApi.update(posts);
         if (postsDTO == null) {
             return ResponseEntity.notFound().build();
         }
