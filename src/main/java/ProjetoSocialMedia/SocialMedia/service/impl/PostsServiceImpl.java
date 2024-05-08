@@ -23,17 +23,6 @@ public class PostsServiceImpl implements PostsService {
         return posts;
     }
 
-//    @Override
-//    public PostsDTO findById(Long id) {
-//        Posts posts = postRepository.findById(id).get();
-//        return postsMapper.postsToPostsDTO(posts);
-//    }
-
-//    @Override
-//    public PostsDTO update(Posts updatePost) {
-//        Posts posts = postRepository.save(updatePost);
-//        return postsMapper.postsToPostsDTO(posts);
-//    }
 
     @Override
     public PostsDTO delete(Long id) {

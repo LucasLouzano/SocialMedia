@@ -10,4 +10,5 @@ public interface PostsMapper {
     PostsMapper CONVERTER = Mappers.getMapper(PostsMapper.class);
 
     PostsDTO postsToPostsDTO(Posts posts);
+
 }

@@ -1,6 +1,7 @@
 package ProjetoSocialMedia.SocialMedia.api;
 
 import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
+//import ProjetoSocialMedia.SocialMedia.integration.PostSocialMidiaClient;
 import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -16,6 +17,8 @@ import java.util.List;
 public class PostApi {
     @Autowired
     private OkHttpClient httpClient;
+//    @Autowired
+//    private PostSocialMidiaClient postSocialMidiaClient;
 
     public PostsDTO save(Posts posts) {
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(posts));
@@ -64,7 +67,8 @@ public class PostApi {
         }
     }
 
-
+    //        List<PostsDTO> postsSocialMidiaClient = postSocialMidiaClient.getPostsSocialMidiaClient();
+//       return postsSocialMidiaClient;
     public List<PostsDTO> findAll() {
         Request request = new Request.Builder()
                 .url("http://localhost:8082/posts")
