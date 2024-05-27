@@ -1,4 +1,4 @@
-package ProjetoSocialMedia.SocialMedia.confiApp;
+package ProjetoSocialMedia.SocialMedia.configApp;
 import ProjetoSocialMedia.SocialMedia.mapper.EmailMapper;
 import ProjetoSocialMedia.SocialMedia.mapper.PostsMapper;
 import org.mapstruct.factory.Mappers;
