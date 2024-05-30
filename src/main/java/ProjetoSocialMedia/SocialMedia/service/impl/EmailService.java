@@ -6,6 +6,8 @@ import ProjetoSocialMedia.SocialMedia.mapper.EmailMapper;
 import ProjetoSocialMedia.SocialMedia.model.email.EmailModel;
 import ProjetoSocialMedia.SocialMedia.repository.EmailRepository;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,7 +18,7 @@ import java.time.LocalDateTime;
 
 @Service
 public class EmailService {
-
+    private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
     @Autowired
     private EmailRepository repository;
     @Autowired
@@ -27,26 +29,21 @@ public class EmailService {
     @Transactional
     public EmailDto sendEmail(EmailModel email) {
         email.setSendDateEmail(LocalDateTime.now());
-        EmailModel emailModel = repository.save(email);
         try {
-
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(email.getEmailFrom());
             message.setTo(email.getEmailTo());
             message.setSubject(email.getSubject());
             message.setText(email.getText());
+
             emailSender.send(message);
-
             email.setStatusEmail(StatusEmail.SENT);
-
         } catch (MailException e) {
-
+            logger.error("Error sending email: ", e);
             email.setStatusEmail(StatusEmail.ERROR);
-
-        } finally {
-
-            return mapper.emailModelToEmailDto(emailModel);
-
         }
+        EmailModel emailModel = repository.save(email);
+        return mapper.emailModelToEmailDto(emailModel);
+
     }
 }

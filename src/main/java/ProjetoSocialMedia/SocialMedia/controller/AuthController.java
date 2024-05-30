@@ -1,12 +1,18 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
+import ProjetoSocialMedia.SocialMedia.dto.EmailDTOInfo;
+import ProjetoSocialMedia.SocialMedia.dto.EmailDto;
 import ProjetoSocialMedia.SocialMedia.dto.Login;
 import ProjetoSocialMedia.SocialMedia.dto.RegisterDTO;
+import ProjetoSocialMedia.SocialMedia.mapper.EmailMapper;
+import ProjetoSocialMedia.SocialMedia.model.email.EmailModel;
 import ProjetoSocialMedia.SocialMedia.model.users.Usuario;
 import ProjetoSocialMedia.SocialMedia.repository.UsuarioRepository;
 import ProjetoSocialMedia.SocialMedia.configuration.TokenService;
+import ProjetoSocialMedia.SocialMedia.service.impl.EmailService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,7 +33,6 @@ public class AuthController {
     private TokenService tokenService;
     @Autowired
     private UsuarioRepository usuarioRepository;
-
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Login login) throws AuthenticationException {
@@ -51,7 +56,6 @@ public class AuthController {
         var usuario = new Usuario(registerDTO.login(), encryptedPassword, registerDTO.role());
 
         this.usuarioRepository.save(usuario);
-
-        return ResponseEntity.ok("Usuário registrado com sucesso!");
+        return ResponseEntity.ok("Usuário registrado com sucesso!.");
     }
 }
