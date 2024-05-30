@@ -1,7 +1,7 @@
 package ProjetoSocialMedia.SocialMedia.service;
 
 import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
-import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
+import ProjetoSocialMedia.SocialMedia.model.Posts;
 
 import java.util.List;
 

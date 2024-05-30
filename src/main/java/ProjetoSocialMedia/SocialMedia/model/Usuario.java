@@ -1,4 +1,4 @@
-package ProjetoSocialMedia.SocialMedia.model.users;
+package ProjetoSocialMedia.SocialMedia.model;
 
 import ProjetoSocialMedia.SocialMedia.role.UserRole;
 import jakarta.persistence.*;

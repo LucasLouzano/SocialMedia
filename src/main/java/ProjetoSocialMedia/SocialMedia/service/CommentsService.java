@@ -1,6 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.service;
 
-import ProjetoSocialMedia.SocialMedia.model.comment.Comments;
+import ProjetoSocialMedia.SocialMedia.model.Comments;
 
 
 import java.util.List;

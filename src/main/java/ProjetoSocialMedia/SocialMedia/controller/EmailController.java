@@ -3,7 +3,7 @@ package ProjetoSocialMedia.SocialMedia.controller;
 import ProjetoSocialMedia.SocialMedia.dto.EmailDTOInfo;
 import ProjetoSocialMedia.SocialMedia.dto.EmailDto;
 import ProjetoSocialMedia.SocialMedia.mapper.EmailMapper;
-import ProjetoSocialMedia.SocialMedia.model.email.EmailModel;
+import ProjetoSocialMedia.SocialMedia.model.EmailModel;
 import ProjetoSocialMedia.SocialMedia.service.impl.EmailService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
-import ProjetoSocialMedia.SocialMedia.model.comment.Comments;
+import ProjetoSocialMedia.SocialMedia.model.Comments;
 import ProjetoSocialMedia.SocialMedia.service.impl.CommentsServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

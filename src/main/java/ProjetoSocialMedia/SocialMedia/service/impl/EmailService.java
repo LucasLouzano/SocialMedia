@@ -3,7 +3,7 @@ package ProjetoSocialMedia.SocialMedia.service.impl;
 import ProjetoSocialMedia.SocialMedia.dto.EmailDto;
 import ProjetoSocialMedia.SocialMedia.enums.StatusEmail;
 import ProjetoSocialMedia.SocialMedia.mapper.EmailMapper;
-import ProjetoSocialMedia.SocialMedia.model.email.EmailModel;
+import ProjetoSocialMedia.SocialMedia.model.EmailModel;
 import ProjetoSocialMedia.SocialMedia.repository.EmailRepository;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;

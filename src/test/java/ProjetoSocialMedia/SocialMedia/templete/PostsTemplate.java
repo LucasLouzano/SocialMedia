@@ -1,6 +1,6 @@
 //package ProjetoSocialMedia.SocialMedia.templete;
 //
-//import ProjetoSocialMedia.SocialMedia.model.users.Usuario;
+//import ProjetoSocialMedia.SocialMedia.model.Usuario;
 //import br.com.six2six.fixturefactory.Fixture;
 //import br.com.six2six.fixturefactory.Rule;
 //import br.com.six2six.fixturefactory.loader.TemplateLoader;

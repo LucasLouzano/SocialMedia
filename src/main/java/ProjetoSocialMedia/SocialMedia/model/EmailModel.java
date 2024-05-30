@@ -1,4 +1,4 @@
-package ProjetoSocialMedia.SocialMedia.model.email;
+package ProjetoSocialMedia.SocialMedia.model;
 
 import ProjetoSocialMedia.SocialMedia.enums.StatusEmail;
 import jakarta.persistence.*;

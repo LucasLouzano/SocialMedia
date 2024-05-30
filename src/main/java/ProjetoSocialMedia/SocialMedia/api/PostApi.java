@@ -2,7 +2,7 @@ package ProjetoSocialMedia.SocialMedia.api;
 
 import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
 //import ProjetoSocialMedia.SocialMedia.integration.PostSocialMidiaClient;
-import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
+import ProjetoSocialMedia.SocialMedia.model.Posts;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.*;

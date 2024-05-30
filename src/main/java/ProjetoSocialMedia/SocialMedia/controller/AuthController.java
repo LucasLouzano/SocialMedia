@@ -1,18 +1,12 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
-import ProjetoSocialMedia.SocialMedia.dto.EmailDTOInfo;
-import ProjetoSocialMedia.SocialMedia.dto.EmailDto;
 import ProjetoSocialMedia.SocialMedia.dto.Login;
 import ProjetoSocialMedia.SocialMedia.dto.RegisterDTO;
-import ProjetoSocialMedia.SocialMedia.mapper.EmailMapper;
-import ProjetoSocialMedia.SocialMedia.model.email.EmailModel;
-import ProjetoSocialMedia.SocialMedia.model.users.Usuario;
+import ProjetoSocialMedia.SocialMedia.model.Usuario;
 import ProjetoSocialMedia.SocialMedia.repository.UsuarioRepository;
 import ProjetoSocialMedia.SocialMedia.configuration.TokenService;
-import ProjetoSocialMedia.SocialMedia.service.impl.EmailService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

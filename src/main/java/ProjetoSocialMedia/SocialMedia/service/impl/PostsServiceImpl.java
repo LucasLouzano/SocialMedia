@@ -2,7 +2,7 @@ package ProjetoSocialMedia.SocialMedia.service.impl;
 
 import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
 import ProjetoSocialMedia.SocialMedia.mapper.PostsMapper;
-import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
+import ProjetoSocialMedia.SocialMedia.model.Posts;
 import ProjetoSocialMedia.SocialMedia.repository.PostsRepository;
 import ProjetoSocialMedia.SocialMedia.service.PostsService;
 import org.springframework.beans.factory.annotation.Autowired;

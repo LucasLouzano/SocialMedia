@@ -1,7 +1,6 @@
-package ProjetoSocialMedia.SocialMedia.model.comment;
+package ProjetoSocialMedia.SocialMedia.model;
 
 
-import ProjetoSocialMedia.SocialMedia.model.posts.Posts;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

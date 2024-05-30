@@ -2,7 +2,7 @@ package ProjetoSocialMedia.SocialMedia.mapper;
 
 import ProjetoSocialMedia.SocialMedia.dto.EmailDTOInfo;
 import ProjetoSocialMedia.SocialMedia.dto.EmailDto;
-import ProjetoSocialMedia.SocialMedia.model.email.EmailModel;
+import ProjetoSocialMedia.SocialMedia.model.EmailModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

@@ -1,6 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.repository;
 
-import ProjetoSocialMedia.SocialMedia.model.users.Usuario;
+import ProjetoSocialMedia.SocialMedia.model.Usuario;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 @Repository

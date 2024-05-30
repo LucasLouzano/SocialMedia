@@ -1,6 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.service.impl;
 
-import ProjetoSocialMedia.SocialMedia.model.comment.Comments;
+import ProjetoSocialMedia.SocialMedia.model.Comments;
 import ProjetoSocialMedia.SocialMedia.repository.CommentsRepository;
 import ProjetoSocialMedia.SocialMedia.service.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
