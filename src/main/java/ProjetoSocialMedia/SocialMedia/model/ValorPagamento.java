@@ -4,26 +4,24 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import java.time.LocalDateTime;
-import java.util.Date;
 @Entity
 public class ValorPagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double valor;
-    private Date data;
-    private String SnValorAtual;
+    private LocalDateTime data;
+    private String snValorAtual;
 
     public ValorPagamento() {
     }
 
-    public ValorPagamento(Long id, double valor, Date data, String snValorAtual) {
+    public ValorPagamento(Long id, double valor, LocalDateTime data, String snValorAtual) {
         this.id = id;
         this.valor = valor;
         this.data = data;
-        SnValorAtual = snValorAtual;
+        this.snValorAtual = snValorAtual;
     }
 
     public Long getId() {
@@ -42,7 +40,7 @@ public class ValorPagamento {
         this.valor = valor;
     }
 
-    public Date getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
@@ -51,10 +49,10 @@ public class ValorPagamento {
     }
 
     public String getSnValorAtual() {
-        return SnValorAtual;
+        return snValorAtual;
     }
 
     public void setSnValorAtual(String snValorAtual) {
-        SnValorAtual = snValorAtual;
+        this.snValorAtual = snValorAtual;
     }
 }

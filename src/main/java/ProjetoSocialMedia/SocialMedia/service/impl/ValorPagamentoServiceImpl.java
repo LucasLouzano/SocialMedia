@@ -1,6 +1,7 @@
 package ProjetoSocialMedia.SocialMedia.service.impl;
 
 import ProjetoSocialMedia.SocialMedia.dto.ValorPagamentoDTO;
+import ProjetoSocialMedia.SocialMedia.mapper.ValorPagamentoMapper;
 import ProjetoSocialMedia.SocialMedia.model.ValorPagamento;
 import ProjetoSocialMedia.SocialMedia.repository.ValorPagamentoRepository;
 import ProjetoSocialMedia.SocialMedia.service.ValorPagamentoService;
@@ -16,26 +17,30 @@ import java.util.Optional;
 public class ValorPagamentoServiceImpl implements ValorPagamentoService {
     @Autowired
     private ValorPagamentoRepository repository;
+    @Autowired
+    private ValorPagamentoMapper mapper;
 
     @Override
     public ValorPagamento findBySnValorAtual(String snValorAtual) {
-       Optional <ValorPagamento> valorPagamento = repository.findBySnValorAtual(snValorAtual);
-        return valorPagamento.orElse(null);
+        return repository.findBySnValorAtual(snValorAtual).orElse(null);
     }
+
 
     @Transactional
     @Override
-    public ValorPagamento save(ValorPagamentoDTO dto) {
-        ValorPagamento valorPagamento = this.findBySnValorAtual("S");
-        if (valorPagamento != null){
-            valorPagamento.setSnValorAtual("N");
-            repository.save(valorPagamento);
+    public ValorPagamentoDTO save(ValorPagamento valorPagamento) {
+        ValorPagamento valorPgm = this.findBySnValorAtual("S");
+        if (valorPgm != null) {
+            valorPgm.setSnValorAtual("N");
+            repository.save(valorPgm);
+            return mapper.PagValueToPagValueDTO(valorPgm);
         }
-      ValorPagamento valorPagamento1 = new ValorPagamento();
-        valorPagamento1.setValor(dto.valor());
-        valorPagamento1.setData(LocalDateTime.now());
-        valorPagamento1.setSnValorAtual("S");
-        return repository.save(valorPagamento1);
+        ValorPagamento novoValorPagamento = new ValorPagamento();
+        novoValorPagamento.setValor(valorPagamento.getValor());
+        novoValorPagamento.setData(LocalDateTime.now());
+        novoValorPagamento.setSnValorAtual("S");
+        repository.save(novoValorPagamento);
+        return mapper.PagValueToPagValueDTO(novoValorPagamento);
     }
 
     @Override

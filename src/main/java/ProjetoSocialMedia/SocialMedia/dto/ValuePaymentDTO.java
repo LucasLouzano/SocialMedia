@@ -1,12 +1,12 @@
 package ProjetoSocialMedia.SocialMedia.dto;
 
-public class ValorPagamentoDTO {
+public class ValuePaymentDTO {
     double valor;
 
-    public ValorPagamentoDTO() {
+    public ValuePaymentDTO() {
     }
 
-    public ValorPagamentoDTO(double valor) {
+    public ValuePaymentDTO(double valor) {
         this.valor = valor;
     }
 
