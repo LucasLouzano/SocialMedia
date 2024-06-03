@@ -1,12 +1,10 @@
 package ProjetoSocialMedia.SocialMedia.consumers;
 
 import ProjetoSocialMedia.SocialMedia.dto.EmailDTOInfo;
-import ProjetoSocialMedia.SocialMedia.dto.EmailDto;
 import ProjetoSocialMedia.SocialMedia.mapper.EmailMapper;
 import ProjetoSocialMedia.SocialMedia.model.EmailModel;
 import ProjetoSocialMedia.SocialMedia.service.impl.EmailService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
