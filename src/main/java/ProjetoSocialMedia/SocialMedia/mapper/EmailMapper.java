@@ -12,4 +12,5 @@ public interface EmailMapper {
     EmailMapper INSTANCE = Mappers.getMapper(EmailMapper.class);
     EmailDto emailModelToEmailDto(EmailModel emailModel);
     EmailDTOInfo mapEmailToDto(EmailDto emailDto);
+    EmailModel mapDtoToEmail(EmailDTOInfo emailDTOInfo);
 }
