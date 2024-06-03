@@ -17,6 +17,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class EmailService {
@@ -51,5 +53,8 @@ public class EmailService {
     public Page<EmailModel> findAll(Pageable pageable) {
         return repository.findAll(pageable);
     }
-
+    public Optional<EmailModel> findById(UUID emailId) {
+        return repository.findById(emailId);
+    }
 }
+
