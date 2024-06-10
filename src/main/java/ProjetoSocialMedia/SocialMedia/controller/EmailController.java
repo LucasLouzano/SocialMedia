@@ -34,7 +34,8 @@ public class EmailController {
 
     @GetMapping("/emails")
     public ResponseEntity<Page<EmailModel>> getAllEmails(@PageableDefault(page = 0, size = 5, sort = "emailId", direction = Sort.Direction.DESC) Pageable pageable) {
-        return new ResponseEntity<>(emailService.findAll(pageable), HttpStatus.OK);
+        Page<EmailModel> email = emailService.findAll(pageable);
+        return new ResponseEntity<>(email, HttpStatus.OK);
     }
     @GetMapping("/emails/{emailId}")
     public ResponseEntity<Object> getOneEmail(@PathVariable(value="emailId") UUID emailId){
