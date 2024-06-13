@@ -1,8 +1,5 @@
 package ProjetoSocialMedia.SocialMedia.service.impl;
-
-import ProjetoSocialMedia.SocialMedia.dto.EmailDto;
 import ProjetoSocialMedia.SocialMedia.enums.StatusEmail;
-import ProjetoSocialMedia.SocialMedia.mapper.EmailMapper;
 import ProjetoSocialMedia.SocialMedia.model.EmailModel;
 import ProjetoSocialMedia.SocialMedia.repository.EmailRepository;
 import jakarta.transaction.Transactional;
@@ -27,32 +24,30 @@ public class EmailService {
     private EmailRepository repository;
     @Autowired
     private JavaMailSender emailSender;
-    @Autowired
-    private EmailMapper mapper;
 
     @Transactional
-    public EmailDto sendEmail(EmailModel email) {
-        email.setSendDateEmail(LocalDateTime.now());
-        try {
+    public EmailModel sendEmail(EmailModel emailModel) {
+        emailModel.setSendDateEmail(LocalDateTime.now());
+        try{
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom(email.getEmailFrom());
-            message.setTo(email.getEmailTo());
-            message.setSubject(email.getSubject());
-            message.setText(email.getText());
-
+            message.setFrom(emailModel.getEmailFrom());
+            message.setTo(emailModel.getEmailTo());
+            message.setSubject(emailModel.getSubject());
+            message.setText(emailModel.getText());
             emailSender.send(message);
-            email.setStatusEmail(StatusEmail.SENT);
-        } catch (MailException e) {
-            logger.error("Error sending email: ", e);
-            email.setStatusEmail(StatusEmail.ERROR);
+
+            emailModel.setStatusEmail(StatusEmail.SENT);
+        } catch (MailException e){
+            emailModel.setStatusEmail(StatusEmail.ERROR);
+        } finally {
+            return repository.save(emailModel);
         }
-        EmailModel emailModel = repository.save(email);
-        return mapper.emailModelToEmailDto(emailModel);
     }
 
     public Page<EmailModel> findAll(Pageable pageable) {
-        return repository.findAll(pageable);
+        return  repository.findAll(pageable);
     }
+
     public Optional<EmailModel> findById(UUID emailId) {
         return repository.findById(emailId);
     }
