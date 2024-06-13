@@ -14,11 +14,6 @@ public class ConfigMapper {
         return Mappers.getMapper(PostsMapper.class);
     }
 
-//    @Bean
-//    public EmailMapper emailServiceMapper() {
-//        return Mappers.getMapper(EmailMapper.class);
-//    }
-
     @Bean
     public ValorPagamentoMapper valorPagamentoMapper() {
         return Mappers.getMapper(ValorPagamentoMapper.class);
