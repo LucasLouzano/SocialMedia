@@ -4,6 +4,8 @@ import ProjetoSocialMedia.SocialMedia.dto.EmailDto;
 import ProjetoSocialMedia.SocialMedia.model.EmailModel;
 import ProjetoSocialMedia.SocialMedia.service.impl.EmailService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +21,7 @@ import java.util.UUID;
 
 @RestController
 public class EmailController {
+    private static final Logger logger = LoggerFactory.getLogger(EmailController.class);
     @Autowired
     private EmailService emailService;
 
@@ -27,7 +30,8 @@ public class EmailController {
     public ResponseEntity<EmailModel> sendingEmail(@RequestBody @Valid EmailDto emailDto) {
         EmailModel emailModel = new EmailModel();
         BeanUtils.copyProperties(emailDto, emailModel);
-        emailService.sendEmail(emailModel);
+        EmailModel emailModel1 = emailService.sendEmail(emailModel);
+        logger.info("Email saved with ID {}", emailModel1.getEmailId());
         return new ResponseEntity<>(emailModel, HttpStatus.CREATED);
     }
 
