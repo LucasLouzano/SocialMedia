@@ -2,22 +2,24 @@ package ProjetoSocialMedia.SocialMedia.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
-public class Pagamento {
+public class PaymentClient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double valor;
-    private String mes;
+    private Date mes;
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario usuario;
 
-    public Pagamento() {
+    public PaymentClient() {
     }
 
-    public Pagamento(Long id, double valor, String mes, Usuario usuario) {
+    public PaymentClient(Long id, double valor, Date mes, Usuario usuario) {
         this.id = id;
         this.valor = valor;
         this.mes = mes;
@@ -40,11 +42,11 @@ public class Pagamento {
         this.valor = valor;
     }
 
-    public String getMes() {
+    public Date getMes() {
         return mes;
     }
 
-    public void setMes(String mes) {
+    public void setMes(Date mes) {
         this.mes = mes;
     }
 
