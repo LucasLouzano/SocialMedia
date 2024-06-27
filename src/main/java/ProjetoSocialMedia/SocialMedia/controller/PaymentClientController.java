@@ -18,15 +18,15 @@ public class PaymentClientController {
     private PaymentClientService service;
 
     @GetMapping("/betweenDates")
-    public ResponseEntity<List<PaymentClient>> findPaymentClientsBetweenDates(
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+    public ResponseEntity<List<PaymentClient>> findPaymentClientsBetweenDates(@RequestBody Date startDate, Date endDate) {
         List<PaymentClient> paymentClients = service.findBetweenDates(startDate, endDate);
         if (paymentClients.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(paymentClients);
     }
+
+
 
     @GetMapping
     public ResponseEntity<List<PaymentClient>> findAllPaymentClients() {
