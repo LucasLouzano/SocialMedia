@@ -1,9 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.model;
-
 import jakarta.persistence.*;
-
-import java.util.Date;
-
+import java.time.LocalDateTime;
 @Entity
 public class PaymentClient {
 
@@ -11,7 +8,9 @@ public class PaymentClient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double valor;
-    private Date mes;
+    @Column(name = "mes")
+    private LocalDateTime mes;
+
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario usuario;
@@ -19,7 +18,7 @@ public class PaymentClient {
     public PaymentClient() {
     }
 
-    public PaymentClient(Long id, double valor, Date mes, Usuario usuario) {
+    public PaymentClient(Long id, double valor, LocalDateTime mes, Usuario usuario) {
         this.id = id;
         this.valor = valor;
         this.mes = mes;
@@ -42,11 +41,11 @@ public class PaymentClient {
         this.valor = valor;
     }
 
-    public Date getMes() {
+    public LocalDateTime getMes() {
         return mes;
     }
 
-    public void setMes(Date mes) {
+    public void setMes(LocalDateTime mes) {
         this.mes = mes;
     }
 
