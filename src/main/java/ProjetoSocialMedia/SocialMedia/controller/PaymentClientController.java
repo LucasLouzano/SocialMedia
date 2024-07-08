@@ -1,32 +1,38 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
+import ProjetoSocialMedia.SocialMedia.dto.PaymentRequestBetwennDate;
 import ProjetoSocialMedia.SocialMedia.model.PaymentClient;
 import ProjetoSocialMedia.SocialMedia.service.PaymentClientService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/paymentClients")
 public class PaymentClientController {
+    private static final Logger logger = LoggerFactory.getLogger(PaymentClientController.class);
     @Autowired
     private PaymentClientService service;
 
     @GetMapping("/betweenDates")
-    public ResponseEntity<List<PaymentClient>> findPaymentClientsBetweenDates(@RequestBody Date startDate, Date endDate) {
-        List<PaymentClient> paymentClients = service.findBetweenDates(startDate, endDate);
+    public ResponseEntity<List<PaymentClient>> findPaymentClientsBetweenDates(@RequestBody PaymentRequestBetwennDate request) {
+        LocalDateTime startDateTime = request.startDate().atStartOfDay();
+        LocalDateTime endDateTime = request.endDate().atTime(LocalTime.MAX);
+
+        List<PaymentClient> paymentClients = service.findBetweenDates(startDateTime, endDateTime);
+
         if (paymentClients.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
+
         return ResponseEntity.ok().body(paymentClients);
     }
-
-
 
     @GetMapping
     public ResponseEntity<List<PaymentClient>> findAllPaymentClients() {
