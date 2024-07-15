@@ -3,20 +3,25 @@ package ProjetoSocialMedia.SocialMedia.service.impl;
 import ProjetoSocialMedia.SocialMedia.model.PaymentClient;
 import ProjetoSocialMedia.SocialMedia.repository.PaymentClientRepository;
 import ProjetoSocialMedia.SocialMedia.service.PaymentClientService;
+import ProjetoSocialMedia.SocialMedia.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Service
 public class PaymentClientServiceImpl implements PaymentClientService {
     @Autowired
     private PaymentClientRepository repository;
+    @Autowired
+    private UserService userService;
 
     @Override
-    public PaymentClient save(PaymentClient paymentClient) {
+    public PaymentClient save() {
+        PaymentClient paymentClient = new PaymentClient();
+        paymentClient.setValor(100);
+        paymentClient.setUsuario(userService.getUsuario());
         paymentClient.setMes(LocalDateTime.now());
         return repository.save(paymentClient);
     }
@@ -27,10 +32,11 @@ public class PaymentClientServiceImpl implements PaymentClientService {
     }
 
     @Override
-    public List<PaymentClient> findBetweenDates(Date startDate, Date endDate) {
+    public List<PaymentClient> findBetweenDates(LocalDateTime startDate, LocalDateTime endDate) {
         return repository.findBetweenDates(startDate, endDate);
     }
 
+    // Outros métodos do serviço
     @Override
     public Boolean paid() {
         return repository.findAll()
@@ -38,4 +44,5 @@ public class PaymentClientServiceImpl implements PaymentClientService {
                 .anyMatch(paymentClient ->
                         paymentClient.getValor() > 0);
     }
+
 }
