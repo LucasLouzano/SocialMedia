@@ -1,2 +1,4 @@
-package ProjetoSocialMedia.SocialMedia.dto;public class PaymentValueDTO {
+package ProjetoSocialMedia.SocialMedia.dto;
+
+public record PaymentValueDTO(double valor) {
 }
