@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.List;
+
 
 @Service
 public class PaymentClientApi {
@@ -27,5 +30,10 @@ public class PaymentClientApi {
         ResponseEntity<PaymentValueDTO> response = restTemplate.exchange(url, HttpMethod.POST, new HttpEntity<>(paymentValue), PaymentValueDTO.class);
         return response.getBody();
     }
-
+    public List<PaymentValue> getPaymentValue() {
+        String url = "http://localhost:8083/pagamento/paymentValues";
+        ResponseEntity<PaymentValue> response = restTemplate.getForEntity(url, PaymentValue.class);
+        PaymentValue paymentValuesArray = response.getBody();
+        return Arrays.asList(paymentValuesArray);
+    }
 }
