@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
-@RequestMapping("/pagamento")
+@RequestMapping("/socialmedia")
 public class PaymentValueController {
     @Autowired
     private PaymentClientApi paymentClientApi;
@@ -33,5 +35,13 @@ public class PaymentValueController {
         }
         return ResponseEntity.ok().body(PaymentDTO);
     }
+    @GetMapping("/paymentValues")
+    public ResponseEntity <List<PaymentValue>> getPaymentValue(){
+        List<PaymentValue> paymentValuesList = paymentClientApi.getPaymentValue();
+        if (paymentValuesList.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(paymentValuesList);
 
+    }
 }
