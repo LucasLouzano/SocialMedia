@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PaymentClientService {
 
-    PaymentClient save(PaymentClient paymentClient);
+    PaymentClient save();
     List<PaymentClient> findAll();
     List<PaymentClient> findBetweenDates(LocalDateTime startDateTime, LocalDateTime endDateTime);
     Boolean paid();
