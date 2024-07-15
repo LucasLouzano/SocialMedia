@@ -44,8 +44,8 @@ public class PaymentClientController {
     }
 
     @PostMapping
-    public ResponseEntity<PaymentClient> savePaymentClient(@RequestBody PaymentClient paymentClient) {
-        PaymentClient payment = service.save(paymentClient);
+    public ResponseEntity<PaymentClient> savePaymentClient() {
+        PaymentClient payment = service.save();
         if (payment == null) {
             return ResponseEntity.notFound().build();
         }
