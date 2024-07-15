@@ -1,5 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.model;
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 @Entity
 public class PaymentClient {
