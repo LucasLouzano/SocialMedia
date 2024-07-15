@@ -1,2 +1,9 @@
-package ProjetoSocialMedia.SocialMedia.dto;public class PaymentValue {
+package ProjetoSocialMedia.SocialMedia.dto;
+
+
+import java.time.LocalDateTime;
+
+public record PaymentValue(Long id, double valor, LocalDateTime data, String snCurrenteValue)  {
+
+
 }
