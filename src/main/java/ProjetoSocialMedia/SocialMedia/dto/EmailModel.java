@@ -1,4 +1,4 @@
-package ProjetoSocialMedia.SocialMedia.model;
+package ProjetoSocialMedia.SocialMedia.dto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
