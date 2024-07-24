@@ -31,17 +31,16 @@ public class Configurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/posts").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/posts").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/posts").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/posts").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/posts").permitAll()
+//                        .requestMatchers(HttpMethod.GET, "/posts").permitAll()
+//                        .requestMatchers(HttpMethod.PUT, "/posts").permitAll()
+//                        .requestMatchers(HttpMethod.DELETE, "/posts").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(tokenfilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
 
     @Bean
     public AuthenticationManager authenticationManager
@@ -53,7 +52,4 @@ public class Configurations {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
-    
-
 }
