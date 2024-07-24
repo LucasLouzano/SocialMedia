@@ -1,5 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.service.impl;
 
+import ProjetoSocialMedia.SocialMedia.api.PaymentClientApi;
 import ProjetoSocialMedia.SocialMedia.model.PaymentClient;
 import ProjetoSocialMedia.SocialMedia.repository.PaymentClientRepository;
 import ProjetoSocialMedia.SocialMedia.service.PaymentClientService;
@@ -16,11 +17,13 @@ public class PaymentClientServiceImpl implements PaymentClientService {
     private PaymentClientRepository repository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PaymentClientApi  paymentClientApi;
 
     @Override
     public PaymentClient save() {
         PaymentClient paymentClient = new PaymentClient();
-        paymentClient.setValor(100);
+        paymentClient.setValor(paymentClientApi.getPaymentValueBy("S").valor());
         paymentClient.setUsuario(userService.getUsuario());
         paymentClient.setMes(LocalDateTime.now());
         return repository.save(paymentClient);
