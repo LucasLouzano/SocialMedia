@@ -1,8 +1,8 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
 import ProjetoSocialMedia.SocialMedia.api.EmailClientServiceApi;
-import ProjetoSocialMedia.SocialMedia.dto.EmailDTO;
-import ProjetoSocialMedia.SocialMedia.dto.EmailModel;
+import ProjetoSocialMedia.SocialMedia.emaildto.EmailDTO;
+import ProjetoSocialMedia.SocialMedia.emaildto.EmailModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
