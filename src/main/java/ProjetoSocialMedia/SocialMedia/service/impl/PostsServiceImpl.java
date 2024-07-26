@@ -1,6 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.service.impl;
 
-import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
+import ProjetoSocialMedia.SocialMedia.postdto.PostsDTO;
 import ProjetoSocialMedia.SocialMedia.mapper.PostsMapper;
 import ProjetoSocialMedia.SocialMedia.model.Posts;
 import ProjetoSocialMedia.SocialMedia.repository.PostsRepository;
