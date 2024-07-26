@@ -1,6 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
-import ProjetoSocialMedia.SocialMedia.dto.PaymentRequestBetwennDate;
+import ProjetoSocialMedia.SocialMedia.paymentdto.PaymentRequestBetwennDate;
 import ProjetoSocialMedia.SocialMedia.model.PaymentClient;
 import ProjetoSocialMedia.SocialMedia.service.PaymentClientService;
 import org.slf4j.Logger;
