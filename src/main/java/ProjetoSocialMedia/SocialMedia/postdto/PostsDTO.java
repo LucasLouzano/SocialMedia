@@ -1,4 +1,4 @@
-package ProjetoSocialMedia.SocialMedia.dto;
+package ProjetoSocialMedia.SocialMedia.postdto;
 
 public class PostsDTO {
 
