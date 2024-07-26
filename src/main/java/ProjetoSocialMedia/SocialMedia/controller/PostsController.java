@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
+import ProjetoSocialMedia.SocialMedia.postdto.PostsDTO;
 import ProjetoSocialMedia.SocialMedia.model.Posts;
 import ProjetoSocialMedia.SocialMedia.service.PostsService;
 import io.swagger.v3.oas.annotations.Operation;
