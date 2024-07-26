@@ -1,8 +1,8 @@
 package ProjetoSocialMedia.SocialMedia.api;
 
-import ProjetoSocialMedia.SocialMedia.dto.PaymentValue;
+import ProjetoSocialMedia.SocialMedia.paymentdto.PaymentValue;
 
-import ProjetoSocialMedia.SocialMedia.dto.PaymentValueDTO;
+import ProjetoSocialMedia.SocialMedia.paymentdto.PaymentValueDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
