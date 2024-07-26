@@ -1,6 +1,6 @@
 package ProjetoSocialMedia.SocialMedia.mapper;
 
-import ProjetoSocialMedia.SocialMedia.dto.PostsDTO;
+import ProjetoSocialMedia.SocialMedia.postdto.PostsDTO;
 import ProjetoSocialMedia.SocialMedia.model.Posts;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
