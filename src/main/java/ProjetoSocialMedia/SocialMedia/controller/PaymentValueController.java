@@ -1,9 +1,9 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
 import ProjetoSocialMedia.SocialMedia.api.PaymentClientApi;
-import ProjetoSocialMedia.SocialMedia.dto.PaymentValue;
+import ProjetoSocialMedia.SocialMedia.paymentdto.PaymentValue;
 
-import ProjetoSocialMedia.SocialMedia.dto.PaymentValueDTO;
+import ProjetoSocialMedia.SocialMedia.paymentdto.PaymentValueDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
