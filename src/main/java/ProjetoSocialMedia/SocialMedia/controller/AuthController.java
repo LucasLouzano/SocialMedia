@@ -1,7 +1,7 @@
 package ProjetoSocialMedia.SocialMedia.controller;
 
-import ProjetoSocialMedia.SocialMedia.dto.Login;
-import ProjetoSocialMedia.SocialMedia.dto.RegisterDTO;
+import ProjetoSocialMedia.SocialMedia.usuario.Login;
+import ProjetoSocialMedia.SocialMedia.usuario.RegisterDTO;
 import ProjetoSocialMedia.SocialMedia.model.Usuario;
 import ProjetoSocialMedia.SocialMedia.repository.UsuarioRepository;
 import ProjetoSocialMedia.SocialMedia.configuration.TokenService;
