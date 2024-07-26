@@ -1,4 +1,4 @@
-package ProjetoSocialMedia.SocialMedia.usuariodto;
+package ProjetoSocialMedia.SocialMedia.usuario;
 
 public record Login(String login, String password) {
 }
