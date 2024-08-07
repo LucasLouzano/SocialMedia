@@ -1,10 +1,10 @@
-package ProjetoSocialMedia.SocialMedia.service.impl;
-
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
-
-@ExtendWith(MockitoExtension.class)
-class PostsServiceImplTest {
+//package ProjetoSocialMedia.SocialMedia.service.impl;
+//
+//import org.junit.jupiter.api.extension.ExtendWith;
+//import org.mockito.junit.jupiter.MockitoExtension;
+//
+//@ExtendWith(MockitoExtension.class)
+//class PostsServiceImplTest {
 
     /*@Mock
     private PostsRepository repository;
@@ -130,6 +130,6 @@ class PostsServiceImplTest {
         // Verificando se o Posts retornado é o mesmo que foi excluído
         assertEquals(posts, deletedPost);
     }*/
-}
+//}
 
 //        doNothing().when(repository).delete(posts);
